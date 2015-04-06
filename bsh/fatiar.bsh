@@ -1,0 +1,34 @@
+#!/bin/bash
+# Função fatiar
+# entrada: caminho para uma base de dados
+# saída: quatro pastas com dez arquivos cada
+# uso: importe a função e invoque-a com um argumento, o caminho completo para a base de dados. O caminho deve ser formatado no estilo Windows e deve estar envolto por aspas duplas. e.g. 
+# . "C:\Workspace\multiple_language\GPGPU-ELM\bsh\fatiar.bsh"
+# fatiar "C:\Workspace\multiple_language\GPGPU-ELM\datasets\brandy.dat"
+fatiar(){
+if [ -n "$1" ]
+then
+	datasetName="$1"
+	fileExtension=${datasetName:(-3)}
+	folder=$(dirname "${datasetName}")
+	mkdir "$folder\\random" "$folder\\train" "$folder\\test" "$folder\\validate" 2> /dev/null
+else
+  break
+fi
+
+# Identifique o número de linhas de todo o arquivo e demarque com base nele o número de linhas dos subconjuntos.
+n_linhas=$(cat $datasetName | wc -l)
+let "n_linhas_para_treino=$n_linhas/2"
+let "n_linhas_para_teste=$n_linhas/4"
+let "n_linhas_para_valid=$n_linhas/4"
+let "primeiro_pulo=$n_linhas_para_treino+$n_linhas_para_teste"
+
+# Realize a divisão em subconjuntos aleatórios.
+for i in {0..9}
+	do
+		shuf "$1" --output="$folder\\random\\$i.$fileExtension"
+		sed -n 1,"$n_linhas_para_treino"p "$folder\\random\\$i.$fileExtension" > "$folder\\train\\$i.$fileExtension"
+		sed -n "$n_linhas_para_treino","$primeiro_pulo"p "$folder\\random\\$i.$fileExtension" > "$folder\\test\\$i.$fileExtension"
+		sed -n "$primeiro_pulo","$n_linhas"p "$folder\\random\\$i.$fileExtension" > "$folder\\validate\\$i.$fileExtension"
+done
+}
