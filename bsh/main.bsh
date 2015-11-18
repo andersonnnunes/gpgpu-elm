@@ -1,0 +1,2 @@
+. fatiar.bsh
+fatiar "C:\Workspace\TCC_Code\dataset\honeybee_pollen\honeybee_pollen.dat" 0

@@ -1,16 +1,18 @@
 #!/bin/bash
 # Função fatiar
-# entrada: caminho para uma base de dados
+# entrada: caminho para uma base de dados, flag para inclusão da primeira linha
 # saída: quatro pastas com dez arquivos cada
-# uso: importe a função e invoque-a com um argumento, o caminho completo para a base de dados. O caminho deve ser formatado no estilo Windows e deve estar envolto por aspas duplas. e.g. 
+# uso: importe a função e invoque-a com um argumento, o caminho completo para a base de dados. O caminho deve ser formatado ao estilo Windows e deve estar envolto por aspas duplas. e.g. 
 # . "C:\Workspace\multiple_language\GPGPU-ELM\bsh\fatiar.bsh"
-# fatiar "C:\Workspace\multiple_language\GPGPU-ELM\datasets\brandy.dat"
+# fatiar "C:\Workspace\multiple_language\GPGPU-ELM\datasets\brandy\brandy.dat" 0
+# As pastas têm nomes: train, test, validade, random.
 fatiar(){
 if [ -n "$1" ]
 then
 	datasetName="$1"
 	fileExtension=${datasetName:(-3)}
 	folder=$(dirname "${datasetName}")
+	rm -r "$folder\\random" "$folder\\train" "$folder\\test" "$folder\\validate" 2> /dev/null
 	mkdir "$folder\\random" "$folder\\train" "$folder\\test" "$folder\\validate" 2> /dev/null
 else
   break
@@ -27,8 +29,18 @@ let "primeiro_pulo=$n_linhas_para_treino+$n_linhas_para_teste"
 for i in {0..9}
 	do
 		shuf "$1" --output="$folder\\random\\$i.$fileExtension"
-		sed -n 1,"$n_linhas_para_treino"p "$folder\\random\\$i.$fileExtension" > "$folder\\train\\$i.$fileExtension"
-		sed -n "$n_linhas_para_treino","$primeiro_pulo"p "$folder\\random\\$i.$fileExtension" > "$folder\\test\\$i.$fileExtension"
-		sed -n "$primeiro_pulo","$n_linhas"p "$folder\\random\\$i.$fileExtension" > "$folder\\validate\\$i.$fileExtension"
+		cat "$folder\\first_line.dat" >> "$folder\\train\\$i-dkp.dat"
+		sed -n 1,"$n_linhas_para_treino"p "$folder\\random\\$i.$fileExtension" >> "$folder\\train\\$i-dkp.dat"
+		tail -n +2 "$folder\\train\\$i-dkp.dat" | cut -f 2- | awk 'BEGIN {OFS=FS="\t";} {temp=$NF; $NF = ""; sub("\t$", ""); print temp, $0}' > "$folder\\train\\$i-elm.dat"
+		let n_linhas_para_treino++
+		cat "$folder\\first_line.dat" > "$folder\\test\\$i-dkp.dat"
+		sed -n "$n_linhas_para_treino","$primeiro_pulo"p "$folder\\random\\$i.$fileExtension" >> "$folder\\test\\$i-dkp.dat"
+		tail -n +2 "$folder\\test\\$i-dkp.dat" | cut -f 2- | awk 'BEGIN {OFS=FS="\t";} {temp=$NF; $NF = ""; sub("\t$", ""); print temp, $0}' > "$folder\\test\\$i-elm.dat"
+		let n_linhas_para_treino--
+		let primeiro_pulo++
+		cat "$folder\\first_line.dat" > "$folder\\validate\\$i-dkp.dat"
+		sed -n "$primeiro_pulo","$n_linhas"p "$folder\\random\\$i.$fileExtension" >> "$folder\\validate\\$i-dkp.dat"
+		tail -n +2 "$folder\\validate\\$i-dkp.dat" | cut -f 2- | awk 'BEGIN {OFS=FS="\t";} {temp=$NF; $NF = ""; sub("\t$", ""); print temp, $0}' > "$folder\\validate\\$i-elm.dat"
+		let primeiro_pulo--
 done
 }

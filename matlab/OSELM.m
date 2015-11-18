@@ -137,12 +137,13 @@ for n = N0 : Block : nTrainingData
             H = SinActFun(Pn,IW,Bias);
         case{'hardlim'}
             H = HardlimActFun(Pn,IW,Bias);
-    end    
+    end
     M = M - M * H' * (eye(Block) + H * M * H')^(-1) * H * M; 
     beta = beta + M * H' * (Tn - H * beta);
+	%'
 end
 end_time_train=cputime;
-TrainingTime=end_time_train-start_time_train        
+TrainingTime=end_time_train-start_time_train;
 clear Pn Tn H M;
 
 switch lower(ActivationFunction)
@@ -173,4 +174,25 @@ end
 TY=HTest * beta;
 clear HTest;
 end_time_test=cputime;
-TestingTime=end_time_test-start_time_test
+TestingTime=end_time_test-start_time_test;
+
+%%%%%%%%%% Calculate correct classification rate in the case of CLASSIFICATION
+MissClassificationRate_Training=0;
+MissClassificationRate_Testing=0;
+
+for i = 1 : nTrainingData
+	[x, label_index_expected]=max(T(i,:));
+	[x, label_index_actual]=max(Y(i,:));
+	if label_index_actual~=label_index_expected
+		MissClassificationRate_Training=MissClassificationRate_Training+1;
+	end
+end
+TrainingAccuracy=1-MissClassificationRate_Training/nTrainingData;
+for i = 1 : nTestingData
+	[x, label_index_expected]=max(TV.T(i,:));
+	[x, label_index_actual]=max(TY(i,:));
+	if label_index_actual~=label_index_expected
+		MissClassificationRate_Testing=MissClassificationRate_Testing+1;
+	end
+end
+TestingAccuracy=1-MissClassificationRate_Testing/nTestingData;
