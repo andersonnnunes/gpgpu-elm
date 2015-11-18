@@ -1,10 +1,11 @@
 clc;
-honeybee_pollen= 1;
+honeybee_pollen = 1;
+bank = 2;
 
-dataset=1;
+dataset = 2;
 
 if dataset == honeybee_pollen
-	name_problem = 'honeybee_pollen';  % DATA SET honeybee_pollen
+	name_problem = 'honeybee_pollen';
 	ni =70;
 	nc =5;
 	np =2600;
@@ -12,9 +13,12 @@ if dataset == honeybee_pollen
 	npv= 652;
 	nps =650;
 	f_results=strcat('../../results/elm/',name_problem,'.txt');
+elseif dataset == bank
+	name_problem = 'bank';
+	f_results=strcat('../../results/elm/',name_problem,'.txt');
 end
 
-nHiddenNeurons=200;
+nHiddenNeurons=100;
 N0=npt;
 Block=0;
 n_trials=10;
