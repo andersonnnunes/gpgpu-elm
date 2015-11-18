@@ -1,0 +1,50 @@
+trial 0 --------------
+Train acc= 80.4%
+Test acc= 66.8%
+Train time s= 0.1562500000
+Test time s= 0.0000000000
+trial 1 --------------
+Train acc= 79.9%
+Test acc= 66.5%
+Train time s= 0.3593750000
+Test time s= 0.0000000000
+trial 2 --------------
+Train acc= 80.2%
+Test acc= 67.5%
+Train time s= 0.3750000000
+Test time s= 0.1250000000
+trial 3 --------------
+Train acc= 80.6%
+Test acc= 67.2%
+Train time s= 0.1875000000
+Test time s= 0.0000000000
+trial 4 --------------
+Train acc= 80.1%
+Test acc= 70.9%
+Train time s= 0.3593750000
+Test time s= 0.0000000000
+trial 5 --------------
+Train acc= 79.7%
+Test acc= 61.8%
+Train time s= 0.2656250000
+Test time s= 0.0000000000
+trial 6 --------------
+Train acc= 79.9%
+Test acc= 67.4%
+Train time s= 0.3281250000
+Test time s= 0.0000000000
+trial 7 --------------
+Train acc= 76.5%
+Test acc= 66.8%
+Train time s= 0.2031250000
+Test time s= 0.0000000000
+trial 8 --------------
+Train acc= 77.0%
+Test acc= 64.8%
+Train time s= 0.3437500000
+Test time s= 0.0000000000
+trial 9 --------------
+Train acc= 79.1%
+Test acc= 65.8%
+Train time s= 0.1718750000
+Test time s= 0.0000000000
