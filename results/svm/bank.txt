@@ -1,0 +1,50 @@
+strcat('../../dataset/',name_problem,'/validate/',trial_number,'-elm.dat')Execution date: 19-Nov-2015 15:49:32
+VALIDATION TRIALS
+Execution date: 19-Nov-2015 15:50:40
+VALIDATION TRIALS
+trial 0 --------------
+trial 1 --------------
+Execution date: 19-Nov-2015 16:04:38
+VALIDATION TRIALS
+trial 0 --------------
+trial 1 --------------
+Execution date: 19-Nov-2015 16:12:27
+VALIDATION TRIALS
+trial 0 --------------
+Execution date: 19-Nov-2015 16:16:14
+VALIDATION TRIALS
+trial 0 --------------
+Execution date: 19-Nov-2015 16:32:55
+VALIDATION TRIALS
+trial 0 --------------
+Execution date: 19-Nov-2015 16:34:16
+VALIDATION TRIALS
+trial 0 --------------
+Execution date: 19-Nov-2015 16:35:01
+VALIDATION TRIALS
+trial 0 --------------
+s = 1 acc= 100.0%
+s = 2 acc= 100.0%
+trial 1 --------------
+s = 1 acc= 100.0%
+s = 2 acc= 100.0%
+time to validate parameters = 340.0781250000
+VALIDATION AVERAGE:
+p = 1 acc=100.0%
+p = 2 acc=100.0%
+best_acc=100.0% bestS= 1
+TEST TRIALS
+Execution date: 19-Nov-2015 16:43:35
+VALIDATION TRIALS
+trial 0 --------------
+s = 1 acc=  88.9%
+s = 2 acc= 100.0%
+trial 1 --------------
+s = 1 acc=  88.8%
+s = 2 acc= 100.0%
+time to validate parameters = 1037.6718750000
+VALIDATION AVERAGE:
+p = 1 acc= 88.8%
+p = 2 acc=100.0%
+best_acc=100.0% bestS= 2
+TEST TRIALS

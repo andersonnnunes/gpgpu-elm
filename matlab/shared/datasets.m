@@ -18,20 +18,20 @@
 honeybee_pollen = 1;
 bank = 2;
 
-dataset = 2;
+dataset = 1;
 
 if dataset == honeybee_pollen
 	name_problem = 'honeybee_pollen';
-	ni =70;
-	nc =5;
-	np =2600;
-	npt= 1300;
-	npv= 650;
-	nps =650;
-	dir= '../../dataset/honeybee_pollen/'; % nome do diretório que armazena o dataset.
-	f_data =strcat(dir,'honeybee_pollen.dat'); % caminho completo para o arquivo principal do dataset.
-	f_part =strcat(dir,'partitions.dat'); % caminho completo para o arquivo auxiliar do dataset.
-	f_results=strcat('../../results/',current_algo_name,'/',name_problem,'.txt');
+	ni = 70;
+	nc = 5;
+	np = 2600;
+	npt = 1300;
+	npv = 650;
+	nps = 650;
+	dir = '../../dataset/honeybee_pollen/'; % nome do diretório que armazena o dataset.
+	f_data = strcat(dir,'honeybee_pollen.dat'); % caminho completo para o arquivo principal do dataset.
+	f_part = strcat(dir,'partitions.dat'); % caminho completo para o arquivo auxiliar do dataset.
+	f_results = strcat('../../results/',current_algo_name,'/',name_problem,'.txt');
 elseif dataset == bank
 	name_problem = 'bank';
 	ni = 53;

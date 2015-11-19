@@ -48,3 +48,111 @@ Train acc= 63.9%
 Test acc= 63.5%
 Train time s= 0.0000000000
 Test time s= 0.0000000000
+Execution date: 19-Nov-2015 14:51:43
+VALIDATION TRIALS
+trial 0 --------------
+nHiddenNeurons = 10 acc=  54.4%
+nHiddenNeurons = 30 acc=  62.9%
+trial 1 --------------
+nHiddenNeurons = 10 acc=  46.0%
+nHiddenNeurons = 30 acc=  65.0%
+time to validate parameters = 5.5937500000
+VALIDATION AVERAGE:
+nHiddenNeurons = 10 acc= 50.2%
+nHiddenNeurons = 30 acc= 64.0%
+best_acc= 64.0% bestS= 30
+TEST TRIALS
+TESTING AVERAGE:
+avg. acc.=  56.6% nHiddenNeurons = 30
+avg. time to build model = 0.0000000000
+avg. time to test model = 0.0000000000
+Execution date: 19-Nov-2015 18:16:48
+VALIDATION TRIALS
+trial 0 --------------
+nHiddenNeurons = 10 acc=  49.8%
+nHiddenNeurons = 30 acc=  61.6%
+trial 1 --------------
+nHiddenNeurons = 10 acc=  53.9%
+nHiddenNeurons = 30 acc=  60.9%
+time to validate parameters = 7.3125000000
+VALIDATION AVERAGE:
+nHiddenNeurons = 10 acc= 51.8%
+nHiddenNeurons = 30 acc= 61.3%
+best_acc= 61.3% bestS= 30
+TEST TRIALS
+TESTING AVERAGE:
+avg. acc.=  56.2% nHiddenNeurons = 30
+avg. time to build model = 0.0000000000
+avg. time to test model = 0.0000000000
+Execution date: 19-Nov-2015 18:23:32
+VALIDATION TRIALS
+trial 0 --------------
+nHiddenNeurons = 10 acc=  50.5%
+nHiddenNeurons = 40 acc=  62.8%
+nHiddenNeurons = 70 acc=  68.5%
+nHiddenNeurons = 100 acc=  72.4%
+nHiddenNeurons = 200 acc=  78.9%
+nHiddenNeurons = 450 acc=  90.3%
+nHiddenNeurons = 700 acc=  96.0%
+nHiddenNeurons = 950 acc=  99.1%
+nHiddenNeurons = 1500 acc= 100.0%
+nHiddenNeurons = 1875 acc= 100.0%
+nHiddenNeurons = 2250 acc= 100.0%
+nHiddenNeurons = 2625 acc= 100.0%
+trial 1 --------------
+nHiddenNeurons = 10 acc=  46.2%
+nHiddenNeurons = 40 acc=  64.5%
+nHiddenNeurons = 70 acc=  71.1%
+nHiddenNeurons = 100 acc=  71.4%
+nHiddenNeurons = 200 acc=  77.2%
+nHiddenNeurons = 450 acc=  89.3%
+nHiddenNeurons = 700 acc=  95.1%
+nHiddenNeurons = 950 acc=  98.7%
+Execution date: 19-Nov-2015 18:26:24
+VALIDATION TRIALS
+trial 0 --------------
+nHiddenNeurons = 10 acc=  52.2%
+nHiddenNeurons = 40 acc=  65.1%
+nHiddenNeurons = 70 acc=  67.5%
+nHiddenNeurons = 100 acc=  71.4%
+nHiddenNeurons = 200 acc=  78.8%
+nHiddenNeurons = 450 acc=  90.5%
+nHiddenNeurons = 700 acc=  94.8%
+nHiddenNeurons = 950 acc=  99.3%
+nHiddenNeurons = 1500 acc= 100.0%
+nHiddenNeurons = 1875 acc= 100.0%
+nHiddenNeurons = 2250 acc= 100.0%
+nHiddenNeurons = 2625 acc= 100.0%
+trial 1 --------------
+nHiddenNeurons = 10 acc=  51.5%
+nHiddenNeurons = 40 acc=  62.1%
+nHiddenNeurons = 70 acc=  66.9%
+nHiddenNeurons = 100 acc=  72.2%
+nHiddenNeurons = 200 acc=  79.8%
+nHiddenNeurons = 450 acc=  89.2%
+nHiddenNeurons = 700 acc=  94.8%
+nHiddenNeurons = 950 acc=  99.0%
+nHiddenNeurons = 1500 acc= 100.0%
+nHiddenNeurons = 1875 acc= 100.0%
+nHiddenNeurons = 2250 acc= 100.0%
+nHiddenNeurons = 2625 acc= 100.0%
+time to validate parameters = 194.6562500000
+VALIDATION AVERAGE:
+nHiddenNeurons = 10 acc= 51.9%
+nHiddenNeurons = 40 acc= 63.6%
+nHiddenNeurons = 70 acc= 67.2%
+nHiddenNeurons = 100 acc= 71.8%
+nHiddenNeurons = 200 acc= 79.3%
+nHiddenNeurons = 450 acc= 89.8%
+nHiddenNeurons = 700 acc= 94.8%
+nHiddenNeurons = 950 acc= 99.2%
+nHiddenNeurons = 1500 acc=100.0%
+nHiddenNeurons = 1875 acc=100.0%
+nHiddenNeurons = 2250 acc=100.0%
+nHiddenNeurons = 2625 acc=100.0%
+best_acc=100.0% bestS= 1500
+TEST TRIALS
+TESTING AVERAGE:
+avg. acc.=  32.2% nHiddenNeurons = 1500
+avg. time to build model = 11.1796875000
+avg. time to test model = 0.2187500000

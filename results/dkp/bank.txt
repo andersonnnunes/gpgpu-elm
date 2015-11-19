@@ -113,3 +113,28 @@ s= 0.03125 acc=  87.4%
 s= 0.0625 acc=  87.4%
 s= 0.125 acc=  87.6%
 s= 0.25 acc=  88.8%
+s= 0.5 acc=  89.8%
+s= 1 acc=  88.7%
+s= 2 acc=  88.7%
+s= 4 acc=  88.7%
+s= 8 acc=  88.7%
+trial 7 --------------
+s= 3.05176e-05 acc=  11.3%
+s= 6.10352e-05 acc=  11.3%
+s= 0.00012207 acc=  11.4%
+s= 0.000244141 acc=  11.6%
+Execution date: 19-Nov-2015 14:12:10
+VALIDATION TRIALS
+trial 1 --------------
+Execution date: 19-Nov-2015 14:12:36
+VALIDATION TRIALS
+trial 1 --------------
+Execution date: 19-Nov-2015 14:26:25
+VALIDATION TRIALS
+trial 1 --------------
+Execution date: 19-Nov-2015 14:32:28
+VALIDATION TRIALS
+trial 1 --------------
+Execution date: 19-Nov-2015 14:50:01
+VALIDATION TRIALS
+trial 1 --------------

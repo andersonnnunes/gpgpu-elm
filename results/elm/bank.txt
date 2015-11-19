@@ -1,53 +1,96 @@
+Execution date: 19-Nov-2015 13:56:51
+VALIDATION TRIALS
 trial 0 --------------
-s= 10 acc=  88.8%
-s= 30 acc=  90.1%
-s= 50 acc=  89.9%
-s= 70 acc=  90.4%
-s= 100 acc=  90.5%
-s= 150 acc=  90.7%
-s= 200 acc=  90.5%
-s= 350 acc=  90.8%
-s= 500 acc=  90.9%
-s= 800 acc=  91.0%
-s= 1000 acc=  91.1%
-s= 1400 acc=  91.2%
-s= 2000 acc=  91.5%
-trial 1 --------------
 s= 10 acc=  88.7%
-s= 30 acc=  90.4%
-s= 50 acc=  89.3%
-s= 70 acc=  90.8%
-s= 100 acc=  90.4%
-s= 150 acc=  90.9%
-s= 200 acc=  90.6%
-s= 350 acc=  90.8%
-s= 500 acc=  90.8%
-s= 800 acc=  91.0%
-s= 1000 acc=  91.3%
-s= 1400 acc=  91.2%
-s= 2000 acc=  91.3%
+s= 30 acc=  88.7%
+s= 50 acc=  90.0%
+s= 70 acc=  90.6%
+trial 1 --------------
+s= 10 acc=  90.4%
+s= 30 acc=  89.6%
+s= 50 acc=  90.0%
+s= 70 acc=  90.6%
 trial 2 --------------
 s= 10 acc=  89.0%
-s= 30 acc=  90.4%
-s= 50 acc=  90.0%
-s= 70 acc=  90.1%
-s= 100 acc=  90.2%
-s= 150 acc=  90.3%
-s= 200 acc=  90.4%
-s= 350 acc=  90.4%
-s= 500 acc=  90.5%
-s= 800 acc=  90.7%
-s= 1000 acc=  90.7%
-s= 1400 acc=  90.9%
-s= 2000 acc=  91.0%
+s= 30 acc=  89.0%
+s= 50 acc=  90.2%
+s= 70 acc=  90.3%
 trial 3 --------------
-s= 10 acc=  88.9%
-s= 30 acc=  89.5%
-s= 50 acc=  90.4%
+s= 10 acc=  88.7%
+s= 30 acc=  90.0%
+s= 50 acc=  90.2%
+s= 70 acc=  90.1%
+trial 4 --------------
+s= 10 acc=  88.6%
+s= 30 acc=  89.2%
+s= 50 acc=  90.2%
+s= 70 acc=  89.5%
+trial 5 --------------
+s= 10 acc=  88.8%
+s= 30 acc=  89.7%
+s= 50 acc=  89.4%
 s= 70 acc=  90.6%
-s= 100 acc=  90.2%
-s= 150 acc=  90.7%
-s= 200 acc=  90.7%
-s= 350 acc=  90.6%
-s= 500 acc=  90.6%
-s= 800 acc=  91.1%
+trial 6 --------------
+s= 10 acc=  88.7%
+s= 30 acc=  89.1%
+s= 50 acc=  89.5%
+s= 70 acc=  89.9%
+trial 7 --------------
+s= 10 acc=  88.6%
+s= 30 acc=  88.9%
+s= 50 acc=  89.9%
+s= 70 acc=  90.1%
+trial 8 --------------
+s= 10 acc=  88.6%
+s= 30 acc=  88.7%
+s= 50 acc=  90.1%
+s= 70 acc=  90.2%
+trial 9 --------------
+s= 10 acc=  88.6%
+s= 30 acc=  89.2%
+s= 50 acc=  89.8%
+s= 70 acc=  90.4%
+time to validate parameters = -148.0781250000
+VALIDATION AVERAGE:
+s= 10 acc= 88.9%
+s= 30 acc= 89.2%
+s= 50 acc= 89.9%
+s= 70 acc= 90.2%
+best_acc= 90.2% bestS= 70
+TEST TRIALS
+TESTING AVERAGE:
+avg. acc.=  90.0% nHiddenNeurons = 70
+avg. time to build model = 0.9609375000
+avg. time to test model = 0.1281250000
+Execution date: 19-Nov-2015 14:44:45
+VALIDATION TRIALS
+trial 0 --------------
+nHiddenNeurons = 10 acc=  90.6%
+nHiddenNeurons = 30 acc=  88.7%
+trial 1 --------------
+nHiddenNeurons = 10 acc=  88.8%
+nHiddenNeurons = 30 acc=  89.0%
+time to validate parameters = 14.1406250000
+VALIDATION AVERAGE:
+nHiddenNeurons = 10 acc= 89.7%
+nHiddenNeurons = 30 acc= 88.9%
+best_acc= 89.7% bestS= 10
+TEST TRIALS
+Execution date: 19-Nov-2015 14:44:57
+VALIDATION TRIALS
+trial 0 --------------
+nHiddenNeurons = 10 acc=  90.0%
+nHiddenNeurons = 30 acc=  88.7%
+trial 1 --------------
+nHiddenNeurons = 10 acc=  89.9%
+nHiddenNeurons = 30 acc=  90.0%
+time to validate parameters = 15.5312500000
+VALIDATION AVERAGE:
+nHiddenNeurons = 10 acc= 89.9%
+nHiddenNeurons = 30 acc= 89.3%
+best_acc= 89.9% bestS= 10
+TEST TRIALS
+TESTING AVERAGE:
+avg. acc.=  90.2% nHiddenNeurons = 10
+avg. time to build model = 0.2343750000
+avg. time to test model = 0.0312500000
