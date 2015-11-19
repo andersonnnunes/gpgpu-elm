@@ -1,0 +1,1 @@
+The partitions are indicated in a single file with 3*N lines, where N is equal the number of runs. Each line has the id numbers of the instances for the current partition, the id number are separated by space. The lines are in groups of three, respectively for train, validation and test.
