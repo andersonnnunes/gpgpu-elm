@@ -1,6 +1,4 @@
-%   * process_chosen_dataset.m
-%   * dkp.m
-%   * main.m
+%   * datasets.m
 %   * Copyright (C) Manuel Fernandez Delgado 2013 <manuel.fernandez.delgado@usc.es>
 %   * Copyright (C) Anderson Nascimento Nunes 2015 <contato@andersonnnunes.org>
 %   *
