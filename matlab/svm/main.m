@@ -38,7 +38,7 @@ avg_acc=mean(acc,3);
 fprintf(fr,'VALIDATION AVERAGE:\n');
 for j=1:nvalS
 	for k=1:nvalC
-	fprintf(fr,'s = c = %g %g acc=%5.1f%%\n', valS(j), valC(k), avg_acc(j,k));
+		fprintf(fr,'s = c = %g %g acc=%5.1f%%\n', valS(j), valC(k), avg_acc(j,k));
 	end
 end
 [best_acc imax] = max(avg_acc(:)); bestS = valS(mod(imax,nvalS)); [best_acc imax] = max(max(avg_acc)); bestC = valC(imax);

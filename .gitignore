@@ -9,3 +9,4 @@ elm_results.txt
 *.asv
 *.mat
 results/
+bin/

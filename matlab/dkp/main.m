@@ -16,7 +16,7 @@ fprintf('VALIDATION TRIALS\n');
 fprintf(fr,'VALIDATION TRIALS\n');
 start_time_validation=cputime;
 for i=1:n_trials % Descobra o melhor parâmetro, para isso, use a partição de validação.
-	fprintf(fr, 'trial %i --------------\n', i);
+	fprintf(fr, 'trial %i --------------\n', i-1);
 	load(sprintf('trial_%i.mat', i),'-mat')
 	for j = 1:nvalS % PARAMETER TUNING
 		y = dkp(xt, dt, nc, xv, valS(j), 2);

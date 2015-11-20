@@ -33,24 +33,27 @@ for i in {0..9}
 		sed -n 1,"$n_linhas_para_treino"p "$folder\\random\\$i.$fileExtension" >> "$folder\\train\\$i-dkp.dat"
 		tail -n +2 "$folder\\train\\$i-dkp.dat" | cut -f 2- | awk 'BEGIN {OFS=FS="\t";} {temp=$NF; $NF = ""; sub("\t$", ""); print temp, $0}' > "$folder\\train\\$i-elm.dat"
 		awk '{ printf("%s ",$1); for (i=2; i<=NF; i++) printf("%d:%s ", i-1, $i); print ""}' "$folder\\train\\$i-elm.dat" >> "$folder\\train\\$i-svm.dat"
+		../bin/svm-scale.exe "$folder\\train\\$i-svm.dat" > "$folder\\train\\$i-svm.scaled" && mv -f "$folder\\train\\$i-svm.scaled" "$folder\\train\\$i-svm.dat"
 		let n_linhas_para_treino++
 		cat "$folder\\first_line.$fileExtension" > "$folder\\test\\$i-dkp.dat"
 		sed -n "$n_linhas_para_treino","$primeiro_pulo"p "$folder\\random\\$i.$fileExtension" >> "$folder\\test\\$i-dkp.dat"
 		tail -n +2 "$folder\\test\\$i-dkp.dat" | cut -f 2- | awk 'BEGIN {OFS=FS="\t";} {temp=$NF; $NF = ""; sub("\t$", ""); print temp, $0}' > "$folder\\test\\$i-elm.dat"
 		awk '{ printf("%s ",$1); for (i=2; i<=NF; i++) printf("%d:%s ", i-1, $i); print ""}' "$folder\\test\\$i-elm.dat" >> "$folder\\test\\$i-svm.dat"
+		../bin/svm-scale.exe "$folder\\test\\$i-svm.dat" > "$folder\\test\\$i-svm.scaled" && mv -f "$folder\\test\\$i-svm.scaled" "$folder\\test\\$i-svm.dat"
 		let n_linhas_para_treino--
 		let primeiro_pulo++
 		cat "$folder\\first_line.$fileExtension" > "$folder\\validate\\$i-dkp.dat"
 		sed -n "$primeiro_pulo","$n_linhas"p "$folder\\random\\$i.$fileExtension" >> "$folder\\validate\\$i-dkp.dat"
 		tail -n +2 "$folder\\validate\\$i-dkp.dat" | cut -f 2- | awk 'BEGIN {OFS=FS="\t";} {temp=$NF; $NF = ""; sub("\t$", ""); print temp, $0}' > "$folder\\validate\\$i-elm.dat"
 		awk '{ printf("%s ",$1); for (i=2; i<=NF; i++) printf("%d:%s ", i-1, $i); print ""}' "$folder\\validate\\$i-elm.dat" >> "$folder\\validate\\$i-svm.dat"
+		../bin/svm-scale.exe "$folder\\validate\\$i-svm.dat" > "$folder\\validate\\$i-svm.scaled" && mv -f "$folder\\validate\\$i-svm.scaled" "$folder\\validate\\$i-svm.dat"
 		let primeiro_pulo--
-	done
+done
 
 for i in {0..9}
 	do
 		tail -n +2 "$folder\\train\\$i-dkp.dat" | cut -f 1 | tr '\n' ' ' | awk '{print $0}' >> "$folder\\partitions.$fileExtension"
 		tail -n +2 "$folder\\validate\\$i-dkp.dat" | cut -f 1 | tr '\n' ' ' | awk '{print $0}' >> "$folder\\partitions.$fileExtension"
 		tail -n +2 "$folder\\test\\$i-dkp.dat" | cut -f 1 | tr '\n' ' ' | awk '{print $0}' >> "$folder\\partitions.$fileExtension"
-	done
+done
 }
