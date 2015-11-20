@@ -1,10 +1,10 @@
 clc;
 clear all;
 addpath('..\shared\');
-current_algo_name='elm';
+current_algo_name='gpgpu-elm';
 n_trials = 2;
 datasets;
-valS = [10:30:100 150:125:1000 1500:250:3000];
+valS = [10:30:100 200:250:1000 1500:375:2700];
 nvalS = length(valS);
 fr=fopen(f_results, 'a');
 if -1==fr

@@ -138,3 +138,7 @@ trial 1 --------------
 Execution date: 19-Nov-2015 14:50:01
 VALIDATION TRIALS
 trial 1 --------------
+Execution date: 19-Nov-2015 19:48:11
+VALIDATION TRIALS
+trial 1 --------------
+s= 3.05176e-05 acc=  68.7%

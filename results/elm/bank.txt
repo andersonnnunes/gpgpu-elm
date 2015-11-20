@@ -94,3 +94,26 @@ TESTING AVERAGE:
 avg. acc.=  90.2% nHiddenNeurons = 10
 avg. time to build model = 0.2343750000
 avg. time to test model = 0.0312500000
+Execution date: 19-Nov-2015 21:58:15
+VALIDATION TRIALS
+trial 0 --------------
+Execution date: 19-Nov-2015 21:59:22
+VALIDATION TRIALS
+trial 0 --------------
+nHiddenNeurons = 10 acc=  90.2%
+nHiddenNeurons = 40 acc=  88.6%
+nHiddenNeurons = 70 acc=  90.4%
+nHiddenNeurons = 100 acc=  90.5%
+nHiddenNeurons = 200 acc=  90.5%
+nHiddenNeurons = 450 acc=  90.6%
+nHiddenNeurons = 700 acc=  90.8%
+nHiddenNeurons = 950 acc=  90.9%
+nHiddenNeurons = 1500 acc=  91.0%
+Execution date: 19-Nov-2015 22:00:31
+VALIDATION TRIALS
+trial 0 --------------
+Execution date: 19-Nov-2015 22:01:07
+VALIDATION TRIALS
+trial 0 --------------
+nHiddenNeurons = 10 acc=  88.6%
+nHiddenNeurons = 40 acc=  90.0%
