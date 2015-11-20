@@ -14,11 +14,10 @@ if -1==fr
 end
 fprintf(fr,['Execution date: ',date,' ',datestr(now, 'HH:MM:SS'),'\n']);
 acc=zeros(nvalS, nvalC, n_trials);
-fprintf('VALIDATION TRIALS for S and C\n');
-fprintf(fr,'VALIDATION TRIALS for S and C\n');
+fprintf('VALIDATION TRIALS\n');
+fprintf(fr,'VALIDATION TRIALS\n');
 start_time_validation=cputime;
 for i=0:n_trials-1
-	fprintf('trial %i --------------\n', i);
 	fprintf(fr, 'trial %i --------------\n', i);
 	trial_number=num2str(i);
 	[label_vector, instance_matrix] = libsvmread(strcat('../../dataset/',name_problem,'/train/',trial_number,'-svm.dat'));
@@ -28,7 +27,6 @@ for i=0:n_trials-1
 			[label_vector, instance_matrix] = libsvmread(strcat('../../dataset/',name_problem,'/validate/',trial_number,'-svm.dat'));
 			[predict_label, ValidationAccuracy, prob_estimates] = svmpredict(label_vector, instance_matrix, model, '-q');
 			acc(j,k,i+1) = ValidationAccuracy(1);
-			fprintf('s = %g c= %g acc= %5.1f%%\n', valS(j), valC(k), acc(j,k,i+1));
 			fprintf(fr,'s = %g c= %g acc= %5.1f%%\n', valS(j), valC(k), acc(j,k,i+1));
 		end
 	end
@@ -37,11 +35,9 @@ ValidationTime=cputime-start_time_validation;
 fprintf('time to validate parameters = %.10f\n', ValidationTime);
 fprintf(fr,'time to validate parameters = %.10f\n', ValidationTime);
 avg_acc=mean(acc,3);
-fprintf('VALIDATION AVERAGE:\n');
 fprintf(fr,'VALIDATION AVERAGE:\n');
 for j=1:nvalS
 	for k=1:nvalC
-	fprintf('s = %g c = %g acc=%5.1f%%\n', valS(j), valC(k), avg_acc(j,k));
 	fprintf(fr,'s = c = %g %g acc=%5.1f%%\n', valS(j), valC(k), avg_acc(j,k));
 	end
 end

@@ -16,13 +16,11 @@ fprintf('VALIDATION TRIALS\n');
 fprintf(fr,'VALIDATION TRIALS\n');
 start_time_validation=cputime;
 for i=1:n_trials % Descobra o melhor parâmetro, para isso, use a partição de validação.
-	fprintf('trial %i --------------\n', i);
 	fprintf(fr, 'trial %i --------------\n', i);
 	load(sprintf('trial_%i.mat', i),'-mat')
 	for j = 1:nvalS % PARAMETER TUNING
 		y = dkp(xt, dt, nc, xv, valS(j), 2);
 		acc(j,i) = 100*sum(y == dv)/npv;
-		fprintf('s= %g acc= %5.1f%%\n', valS(j), acc(j,i));
 		fprintf(fr,'s= %g acc= %5.1f%%\n', valS(j), acc(j,i));
 	end
 	clear('xt','dt','iv','xv','dv','is','xs','ds')
@@ -31,10 +29,8 @@ ValidationTime=cputime-start_time_validation; % Calculate CPU time (seconds) spe
 fprintf('time to validate parameters = %.10f\n', ValidationTime);
 fprintf(fr,'time to validate parameters = %.10f\n', ValidationTime);
 avg_acc=mean(acc,2);
-fprintf('VALIDATION AVERAGE:\n');
 fprintf(fr,'VALIDATION AVERAGE:\n');
 for i=1:nvalS
-	fprintf('s= %g acc=%5.1f%%\n', valS(i), avg_acc(i));
 	fprintf(fr,'s= %g acc=%5.1f%%\n', valS(i), avg_acc(i));
 end
 [best_acc, imax] = max(avg_acc); bestS = valS(imax);
