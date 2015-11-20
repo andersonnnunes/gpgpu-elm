@@ -14,21 +14,23 @@ if -1==fr
 end
 fprintf(fr,['Execution date: ',date,' ',datestr(now, 'HH:MM:SS'),'\n']);
 acc=zeros(nvalS,n_trials);
-fprintf('VALIDATION TRIALS for S\n');
-fprintf(fr,'VALIDATION TRIALS for S\n');
+fprintf('VALIDATION TRIALS for S and C\n');
+fprintf(fr,'VALIDATION TRIALS for S and C\n');
 start_time_validation=cputime;
 for i=0:n_trials-1 % Descobra o melhor parâmetro, para isso, use a partição de validação.
 	fprintf('trial %i --------------\n', i);
 	fprintf(fr, 'trial %i --------------\n', i);
 	trial_number=num2str(i);
 	[label_vector, instance_matrix] = libsvmread(strcat('../../dataset/',name_problem,'/train/',trial_number,'-svm.dat'));
-	for j = 1:nvalS % PARAMETER TUNING
-		model = svmtrain(label_vector, instance_matrix, ['-q -g ', num2str(valS(j))]);
-		[label_vector, instance_matrix] = libsvmread(strcat('../../dataset/',name_problem,'/validate/',trial_number,'-svm.dat'));
-		[predict_label, ValidationAccuracy, prob_estimates] = svmpredict(label_vector, instance_matrix, model, '-q');
-		acc(j,i+1) = ValidationAccuracy(1);
-		fprintf('s = %g acc= %5.1f%%\n', valS(j), acc(j,i+1));
-		fprintf(fr,'s = %g acc= %5.1f%%\n', valS(j), acc(j,i+1));
+	for j = 1:nvalS % PARAMETER TUNING for S
+		for k = 1:nvalC % PARAMETER TUNING for C
+			model = svmtrain(label_vector, instance_matrix, ['-q -c ', num2str(valC(k)),'-g ', num2str(valS(j))]);
+			[label_vector, instance_matrix] = libsvmread(strcat('../../dataset/',name_problem,'/validate/',trial_number,'-svm.dat'));
+			[predict_label, ValidationAccuracy, prob_estimates] = svmpredict(label_vector, instance_matrix, model, '-q');
+			acc(j,i+1) = ValidationAccuracy(1);
+			fprintf('s = %g c= %g acc= %5.1f%%\n', valS(j), valC(k), acc(j,i+1));
+			fprintf(fr,'s = %g c= %g acc= %5.1f%%\n', valS(j), valC(k), acc(j,i+1));
+		end
 	end
 end
 ValidationTime=cputime-start_time_validation; % Calculate CPU time (seconds) spent for validation.
