@@ -41,7 +41,7 @@ for j=1:nvalS
 		fprintf(fr,'s = c = %g %g acc=%5.1f%%\n', valS(j), valC(k), avg_acc(j,k));
 	end
 end
-[best_acc imax] = max(avg_acc(:)); bestS = valS(mod(imax,nvalS)); [best_acc imax] = max(max(avg_acc)); bestC = valC(imax);
+[best_acc imax] = max(max(avg_acc,[],2)); bestS = valS(imax); [best_acc imax] = max(max(avg_acc,[],1)); bestC = valC(imax);
 fprintf('best_acc=%5.1f%% bestS= %g bestC= %g\n', best_acc, bestS, bestC);
 fprintf(fr,'best_acc=%5.1f%% bestS= %g bestC= %g\n', best_acc, bestS, bestC);
 
