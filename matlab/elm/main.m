@@ -16,7 +16,7 @@ fprintf(fr,['Execution date: ',date,' ',datestr(now, 'HH:MM:SS'),'\n']);
 acc=zeros(nvalS, nvalC, n_trials);
 fprintf('VALIDATION TRIALS\n');
 fprintf(fr,'VALIDATION TRIALS\n');
-start_time_validation=cputime;
+tic;
 for i=0:n_trials-1
 	fprintf(fr, 'trial %i --------------\n', i);
 	trial_number=num2str(i);
@@ -24,18 +24,18 @@ for i=0:n_trials-1
 		for k = 1:nvalC % PARAMETER TUNING for C
 			[TrainingTime, TestingTime, TrainingAccuracy, TestingAccuracy] = ELM(strcat('../../dataset/',name_problem,'/train/',trial_number,'-elm.dat'), strcat('../../dataset/',name_problem,'/validate/',trial_number,'-elm.dat'), 1, valS(j), valC{k});
 			acc(j,k,i+1) = TrainingAccuracy.*100;
-			fprintf(fr,'nHiddenNeurons = %g act. func. = %s acc= %5.1f%%\n', valS(j), valC{k}, acc(j,i+1));
+			fprintf(fr,'nHiddenNeurons = %g act. func. = %s acc= %5.1f%%\n', valS(j), valC{k}, acc(j,k,i+1));
 		end
 	end
 end
-ValidationTime=cputime-start_time_validation; % Calculate CPU time (seconds) spent for validation.
+ValidationTime=toc;
 fprintf('time to validate parameters = %.10f\n', ValidationTime);
 fprintf(fr,'time to validate parameters = %.10f\n', ValidationTime);
 avg_acc=mean(acc,3);
 fprintf(fr,'VALIDATION AVERAGE:\n');
 for j=1:nvalS
 	for k=1:nvalC
-		fprintf(fr,'nHiddenNeurons = %g act. func. = %s acc=%5.1f%%\n', valS(j), valC{k}, avg_acc(j));
+		fprintf(fr,'nHiddenNeurons = %g act. func. = %s acc=%5.1f%%\n', valS(j), valC{k}, avg_acc(j,k));
 	end
 end
 [best_acc imax] = max(avg_acc(:)); bestS = valS(mod(imax,nvalS)); [best_acc imax] = max(max(avg_acc)); bestC = valC{imax};
