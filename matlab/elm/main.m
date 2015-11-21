@@ -21,6 +21,11 @@ for i=0:n_trials-1
 	fprintf(fr, 'trial %i --------------\n', i);
 	trial_number=num2str(i);
 	for j = 1:nvalS % PARAMETER TUNING for S
+		if valS(j)>=npt.*0.4
+			fprintf('Skipping iteration to prevent over-fitting.\n');
+			fprintf(fr,'Skipping iteration to prevent over-fitting.\n');
+			continue
+		end
 		for k = 1:nvalC % PARAMETER TUNING for C
 			[TrainingTime, TestingTime, TrainingAccuracy, TestingAccuracy] = ELM(strcat('../../dataset/',name_problem,'/train/',trial_number,'-elm.dat'), strcat('../../dataset/',name_problem,'/validate/',trial_number,'-elm.dat'), 1, valS(j), valC{k});
 			acc(j,k,i+1) = TrainingAccuracy.*100;
