@@ -21,7 +21,7 @@ for i=0:n_trials-1
 	fprintf(fr, 'trial %i --------------\n', i);
 	trial_number=num2str(i);
 	for j = 1:nvalS % PARAMETER TUNING for S
-		if valS(j)>=npt.*0.4
+		if valS(j)>=npt*0.4
 			fprintf('Skipping iteration to prevent over-fitting.\n');
 			fprintf(fr,'Skipping iteration to prevent over-fitting.\n');
 			continue
