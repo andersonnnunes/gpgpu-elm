@@ -40,16 +40,17 @@ function [TrainingTime, TestingTime, TrainingAccuracy, TestingAccuracy] = elm(Tr
 REGRESSION=0;
 CLASSIFIER=1;
 
+
 %%%%%%%%%%% Load training dataset
-train_data=gpuArray(load(TrainingData_File));
-T=pagefun(@ctranspose, train_data(:,1));
-P=pagefun(@ctranspose, train_data(:,2:size(train_data,2)));
+train_data=single(load(TrainingData_File));
+T=train_data(:,1)';
+P=train_data(:,2:size(train_data,2))';
 clear train_data;                                   %   Release raw training data array
 
 %%%%%%%%%%% Load testing dataset
-test_data=gpuArray(load(TestingData_File));
-TV.T=pagefun(@ctranspose, test_data(:,1));
-TV.P=pagefun(@ctranspose, test_data(:,2:size(test_data,2)));
+test_data=single(load(TestingData_File));
+TV.T=test_data(:,1)';
+TV.P=test_data(:,2:size(test_data,2))';
 clear test_data;                                    %   Release raw testing data array
 
 NumberofTrainingData=size(P,2);
@@ -59,7 +60,7 @@ NumberofInputNeurons=size(P,1);
 if Elm_Type~=REGRESSION
     %%%%%%%%%%%% Preprocessing the data of classification
     sorted_target=sort(cat(2,T,TV.T),2);
-    label=gpuArray.zeros(1,1);    %   Find and save in 'label' class label from training and testing data sets
+    label=zeros(1,1);                               %   Find and save in 'label' class label from training and testing data sets
     label(1,1)=sorted_target(1,1);
     j=1;
     for i = 2:(NumberofTrainingData+NumberofTestingData)
@@ -72,7 +73,7 @@ if Elm_Type~=REGRESSION
     NumberofOutputNeurons=number_class;
        
     %%%%%%%%%% Processing the targets of training
-    temp_T=gpuArray.zeros(NumberofOutputNeurons, NumberofTrainingData);
+    temp_T=zeros(NumberofOutputNeurons, NumberofTrainingData);
     for i = 1:NumberofTrainingData
         for j = 1:number_class
             if label(1,j) == T(1,i)
@@ -84,7 +85,7 @@ if Elm_Type~=REGRESSION
     T=temp_T*2-1;
 
     %%%%%%%%%% Processing the targets of testing
-    temp_TV_T=gpuArray.zeros(NumberofOutputNeurons, NumberofTestingData);
+    temp_TV_T=zeros(NumberofOutputNeurons, NumberofTestingData);
     for i = 1:NumberofTestingData
         for j = 1:number_class
             if label(1,j) == TV.T(1,i)
@@ -97,8 +98,14 @@ if Elm_Type~=REGRESSION
 
 end                                                 %   end if of Elm_Type
 
+%%%%%%%%%%% Move data to GPU
+T=gpuArray(T);
+P=gpuArray(P);
+TV.T=gpuArray(TV.T);
+TV.P=gpuArray(TV.P);
+
 %%%%%%%%%%% Calculate weights & biases
-start_time_train=cputime;
+tic;
 
 %%%%%%%%%%% Random generate input weights InputWeight (w_i) and biases BiasofHiddenNeurons (b_i) of hidden neurons
 InputWeight=gpuArray.rand(NumberofHiddenNeurons,NumberofInputNeurons)*2-1;
@@ -106,7 +113,7 @@ BiasofHiddenNeurons=gpuArray.rand(NumberofHiddenNeurons,1);
 tempH=InputWeight*P;
 clear P;                                            %   Release input of training data 
 ind=gpuArray.ones(1,NumberofTrainingData);
-BiasMatrix=BiasofHiddenNeurons(:,ind);              %   Extend the bias matrix BiasofHiddenNeurons to match the demention of H
+BiasMatrix=BiasofHiddenNeurons(:,ind);              %   Extend the bias matrix BiasofHiddenNeurons to match the dimension of H
 tempH=tempH+BiasMatrix;
 
 %%%%%%%%%%% Calculate hidden neuron output matrix H
@@ -119,21 +126,21 @@ switch lower(ActivationFunction)
         H = sin(tempH);    
     case {'hardlim'}
         %%%%%%%% Hard Limit
-        H = double(hardlim(tempH));
+        H = single(hardlim(tempH));
     case {'tribas'}
         %%%%%%%% Triangular basis function
         H = tribas(tempH);
     case {'radbas'}
         %%%%%%%% Radial basis function
         H = radbas(tempH);
+	otherwise
+        error(['Unknown action: ' num2str(action)])
         %%%%%%%% More activation functions can be added here                
 end
 clear tempH;                  %   Release the temparary array for calculation of hidden neuron output matrix H
 %%%%%%%%%%% Calculate output weights OutputWeight (beta_i)
-OutputWeight=pagefun(@ctranspose, H) \ pagefun(@ctranspose, T);
-% OutputWeight=pinv(pagefun(@ctranspose, H)) * pagefun(@ctranspose, T);
-end_time_train=cputime;
-TrainingTime=end_time_train-start_time_train;       %   Calculate CPU time (seconds) spent for training ELM
+OutputWeight=pinv(pagefun(@ctranspose, H)) * pagefun(@ctranspose, T);
+TrainingTime=toc;
 
 %%%%%%%%%%% Calculate the training accuracy
 Y=pagefun(@ctranspose, (pagefun(@ctranspose, H) * OutputWeight));                             %   Y: the actual output of the training data
@@ -143,7 +150,7 @@ end
 clear H;
 
 %%%%%%%%%%% Calculate the output of testing input
-start_time_test=cputime;
+tic;
 tempH_test=InputWeight*TV.P;
 clear TV.P;             %   Release input of testing data             
 ind=gpuArray.ones(1,NumberofTestingData);
@@ -165,11 +172,17 @@ switch lower(ActivationFunction)
     case {'radbas'}
         %%%%%%%% Radial basis function
         H_test = radbas(tempH_test);        
+	otherwise
+        error(['Unknown action: ' num2str(action)])
         %%%%%%%% More activation functions can be added here        
 end
 TY=pagefun(@ctranspose, (pagefun(@ctranspose, H_test) * OutputWeight));                       %   TY: the actual output of the testing data
-end_time_test=cputime;
-TestingTime=end_time_test-start_time_test;           %   Calculate CPU time (seconds) spent by ELM predicting the whole testing data
+TestingTime=toc;
+%%%%%%%%%%% Gather data from GPU
+T=gather(T);
+Y=gather(Y);
+TV.T=gather(TV.T);
+TY=gather(TY);
 
 if Elm_Type == REGRESSION
     TestingAccuracy=sqrt(mse(TV.T - TY));           %   Calculate testing accuracy (RMSE) for regression case

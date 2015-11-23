@@ -98,7 +98,7 @@ if Elm_Type~=REGRESSION
 end                                                 %   end if of Elm_Type
 
 %%%%%%%%%%% Calculate weights & biases
-start_time_train=cputime;
+tic;
 
 %%%%%%%%%%% Random generate input weights InputWeight (w_i) and biases BiasofHiddenNeurons (b_i) of hidden neurons
 InputWeight=rand(NumberofHiddenNeurons,NumberofInputNeurons)*2-1;
@@ -126,23 +126,15 @@ switch lower(ActivationFunction)
     case {'radbas'}
         %%%%%%%% Radial basis function
         H = radbas(tempH);
+	otherwise
+        error(['Unknown action: ' num2str(action)])
         %%%%%%%% More activation functions can be added here                
 end
 clear tempH;                                        %   Release the temparary array for calculation of hidden neuron output matrix H
 
 %%%%%%%%%%% Calculate output weights OutputWeight (beta_i)
-OutputWeight=pinv(H') * T';                        % implementation without regularization factor //refer to 2006 Neurocomputing paper
-%OutputWeight=inv(eye(size(H,1))/C+H * H') * H * T';   % faster method 1 //refer to 2012 IEEE TSMC-B paper
-%implementation; one can set regularizaiton factor C properly in classification applications 
-%OutputWeight=(eye(size(H,1))/C+H * H') \ H * T';      % faster method 2 //refer to 2012 IEEE TSMC-B paper
-%implementation; one can set regularizaiton factor C properly in classification applications
-
-%If you use faster methods or kernel method, PLEASE CITE in your paper properly: 
-
-%Guang-Bin Huang, Hongming Zhou, Xiaojian Ding, and Rui Zhang, "Extreme Learning Machine for Regression and Multi-Class Classification," submitted to IEEE Transactions on Pattern Analysis and Machine Intelligence, October 2010. 
-
-end_time_train=cputime;
-TrainingTime=end_time_train-start_time_train;       %   Calculate CPU time (seconds) spent for training ELM
+OutputWeight=pinv(H') * T';
+TrainingTime=toc;
 
 %%%%%%%%%%% Calculate the training accuracy
 Y=(H' * OutputWeight)';                             %   Y: the actual output of the training data
@@ -152,7 +144,7 @@ end
 clear H;
 
 %%%%%%%%%%% Calculate the output of testing input
-start_time_test=cputime;
+tic;
 tempH_test=InputWeight*TV.P;
 clear TV.P;             %   Release input of testing data             
 ind=ones(1,NumberofTestingData);
@@ -174,11 +166,12 @@ switch lower(ActivationFunction)
     case {'radbas'}
         %%%%%%%% Radial basis function
         H_test = radbas(tempH_test);        
+	otherwise
+        error(['Unknown action: ' num2str(action)])
         %%%%%%%% More activation functions can be added here        
 end
 TY=(H_test' * OutputWeight)';                       %   TY: the actual output of the testing data
-end_time_test=cputime;
-TestingTime=end_time_test-start_time_test;           %   Calculate CPU time (seconds) spent by ELM predicting the whole testing data
+TestingTime=toc;
 
 if Elm_Type == REGRESSION
     TestingAccuracy=sqrt(mse(TV.T - TY));           %   Calculate testing accuracy (RMSE) for regression case

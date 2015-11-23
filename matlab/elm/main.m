@@ -4,8 +4,9 @@ addpath('..\shared\');
 current_algo_name='elm';
 n_trials = 2;
 datasets;
-valS = [10:30:100 150:125:1000 1500:250:3000];
-valC = {'sig', 'sin', 'hardlim', 'tribas', 'radbas'};
+valS = [10:30:100 150:125:650 800:200:1200];
+valC = {'sig', 'sin'};
+%valC = {'sig', 'sin', 'hardlim', 'tribas', 'radbas'};
 nvalS = length(valS);
 nvalC = length(valC);
 fr=fopen(f_results, 'a');
@@ -16,7 +17,7 @@ fprintf(fr,['Execution date: ',date,' ',datestr(now, 'HH:MM:SS'),'\n']);
 acc=zeros(nvalS, nvalC, n_trials);
 fprintf('VALIDATION TRIALS\n');
 fprintf(fr,'VALIDATION TRIALS\n');
-tic;
+validation_time=tic;
 for i=0:n_trials-1
 	fprintf(fr, 'trial %i --------------\n', i);
 	trial_number=num2str(i);
@@ -33,7 +34,7 @@ for i=0:n_trials-1
 		end
 	end
 end
-ValidationTime=toc;
+ValidationTime=toc(validation_time);
 fprintf('time to validate parameters = %.10f\n', ValidationTime);
 fprintf(fr,'time to validate parameters = %.10f\n', ValidationTime);
 avg_acc=mean(acc,3);
