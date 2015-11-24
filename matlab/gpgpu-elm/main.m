@@ -1,14 +1,7 @@
-clc;
-clear all;
+close all; clear variables; clc;
 addpath('..\shared\');
 current_algo_name='gpgpu-elm';
-n_trials = 2;
-datasets;
-valS = [10:30:100 150:125:650 800:200:1200];
-%valC = {'sig', 'sin'};
-valC = {'sig', 'sin', 'hardlim', 'tribas', 'radbas'};
-nvalS = length(valS);
-nvalC = length(valC);
+nu_trials; datasets; parameters;
 fr=fopen(f_results, 'a');
 if -1==fr
 	error('error opening %s', f_results)

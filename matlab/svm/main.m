@@ -1,13 +1,7 @@
-clc;
-clear all;
+close all; clear variables; clc;
 addpath('..\shared\');
 current_algo_name='svm';
-n_trials = 2;
-datasets;
-valS = pow2(-15:1:2);
-valC = pow2(-5:1:14);
-nvalS = length(valS);
-nvalC = length(valC);
+nu_trials; datasets; parameters;
 fr=fopen(f_results, 'a');
 if -1==fr
 	error('error opening %s', f_results)

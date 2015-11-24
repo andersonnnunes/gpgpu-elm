@@ -42,13 +42,13 @@ CLASSIFIER=1;
 
 
 %%%%%%%%%%% Load training dataset
-train_data=single(load(TrainingData_File));
+train_data=load(TrainingData_File);
 T=train_data(:,1)';
 P=train_data(:,2:size(train_data,2))';
 clear train_data;                                   %   Release raw training data array
 
 %%%%%%%%%%% Load testing dataset
-test_data=single(load(TestingData_File));
+test_data=load(TestingData_File);
 TV.T=test_data(:,1)';
 TV.P=test_data(:,2:size(test_data,2))';
 clear test_data;                                    %   Release raw testing data array
@@ -126,7 +126,7 @@ switch lower(ActivationFunction)
         H = sin(tempH);    
     case {'hardlim'}
         %%%%%%%% Hard Limit
-        H = single(hardlim(tempH));
+        H = double(hardlim(tempH));
     case {'tribas'}
         %%%%%%%% Triangular basis function
         H = tribas(tempH);

@@ -1,0 +1,1 @@
+Log data captured with GPU-Z: http://www.techpowerup.com/downloads/2571/techpowerup-gpu-z-v0-8-6/

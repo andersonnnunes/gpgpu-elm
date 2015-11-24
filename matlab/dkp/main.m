@@ -1,11 +1,7 @@
-clc;
-clear all;
+close all; clear variables; clc;
 addpath('..\shared\');
 current_algo_name='dkp';
-n_trials = 2;
-datasets; process_chosen_dataset;
-valS = pow2(-15:1:2);
-nvalS = length(valS);
+nu_trials; datasets; process_chosen_dataset; parameters;
 fr=fopen(f_results, 'a');
 if -1==fr
 	error('error opening %s', f_results)

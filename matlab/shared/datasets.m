@@ -31,7 +31,7 @@ if dataset == honeybee_pollen
 	dir = '../../dataset/honeybee_pollen/'; % nome do diretório que armazena o dataset.
 	f_data = strcat(dir,'honeybee_pollen.dat'); % caminho completo para o arquivo principal do dataset.
 	f_part = strcat(dir,'partitions.dat'); % caminho completo para o arquivo auxiliar do dataset.
-	f_results = strcat('../../results/',current_algo_name,'/',name_problem,'.txt');
+	f_results = strcat('../../results/',current_algo_name,'/',name_problem,'.log');
 elseif dataset == bank
 	name_problem = 'bank';
 	ni = 53;
@@ -43,7 +43,7 @@ elseif dataset == bank
 	dir= '../../dataset/bank/'; % nome do diretório que armazena o dataset.
 	f_data =strcat(dir,'bank-additional-full.dat'); % caminho completo para o arquivo principal do dataset.
 	f_part =strcat(dir,'partitions.dat'); % caminho completo para o arquivo auxiliar do dataset.
-	f_results=strcat('../../results/',current_algo_name,'/',name_problem,'.txt');
+	f_results=strcat('../../results/',current_algo_name,'/',name_problem,'.log');
 end
 
 % Example of format for dataset description

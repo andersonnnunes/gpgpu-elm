@@ -1,0 +1,1 @@
+This folder includes logs and text output from the algorithms. These files are not tracked by git, as they are generated at each execution.

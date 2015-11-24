@@ -5,8 +5,9 @@
 # *.[oa]
 # *~
 *.dat
-elm_results.txt
 *.asv
 *.mat
-results/
-bin/
+*_results.txt
+*.exe
+*.log
+*.bak
