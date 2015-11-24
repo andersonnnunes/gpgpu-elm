@@ -11,9 +11,9 @@ function results = sintetic_bench()
 % from the solving of the linear system, and measure only the time it
 % takes to do the latter.
 function [A, b] = getData(n, clz)
-    fprintf('Creating a matrix of size %d-by-%d.\n', n, n/64);
-    A = rand(n, n/64, clz);
-    b = rand(n, n/64, clz);
+    fprintf('Creating a matrix of size %d-by-%d.\n', n, n/s_dim);
+    A = rand(n, n/s_dim, clz);
+    b = rand(n, n/s_dim, clz);
 end
 
 function time = timeSolve(A, b, waitFcn)
@@ -31,8 +31,9 @@ end
 % different matrix sizes.
 
 % Declare the matrix sizes to be a multiple of 1024.
-maxSizeSingle = 1024*15;
+maxSizeSingle = 1024*20;
 maxSizeDouble = maxSizeSingle/2;
+s_dim = 64;
 step = 1024;
 if maxSizeDouble/step >= 10
     step = step*floor(maxSizeDouble/(5*step));
@@ -98,8 +99,8 @@ end
 function [gflopsCPU, gflopsGPU] = executeBenchmarks(clz, sizes)
     fprintf(['Starting benchmarks with %d different %s-precision ' ...
          'matrices of sizes\nranging from %d-by-%d to %d-by-%d.\n'], ...
-            length(sizes), clz, sizes(1), sizes(1), sizes(end), ...
-            sizes(end));
+            length(sizes), clz, sizes(1), sizes(1)/s_dim, sizes(end), ...
+            sizes(end)/s_dim);
     gflopsGPU = zeros(size(sizes));
     gflopsCPU = zeros(size(sizes));
     gd = gpuDevice;
@@ -110,8 +111,10 @@ function [gflopsCPU, gflopsGPU] = executeBenchmarks(clz, sizes)
         fprintf('Time on CPU: %f\n', gflopsCPU(i));
         A = gpuArray(A);
         b = gpuArray(b);
+		fprintf('Free memory on GPU: %f\n', gd.FreeMemory);
         gflopsGPU(i) = benchFcn(A, b, @() waitForGpu(gd));
         fprintf('Time on GPU: %f\n', gflopsGPU(i));
+		clear('A','b');
     end
 end
 
@@ -176,4 +179,5 @@ ylabel(ax, 'Speedup');
 xlabel(ax, 'Tamanho da Dimensão Maior da Matriz');
 drawnow;
 print(fig, 'C:\Workspace\TCC_Text\speedup.png', '-dpng');
+close all;
 end
