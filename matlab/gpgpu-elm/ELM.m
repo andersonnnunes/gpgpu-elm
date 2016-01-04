@@ -40,7 +40,6 @@ function [TrainingTime, TestingTime, TrainingAccuracy, TestingAccuracy] = elm(Tr
 REGRESSION=0;
 CLASSIFIER=1;
 
-
 %%%%%%%%%%% Load training dataset
 train_data=load(TrainingData_File);
 T=train_data(:,1)';
@@ -107,7 +106,6 @@ TV.P=gpuArray(TV.P);
 
 %%%%%%%%%%% Calculate weights & biases
 tic;
-
 %%%%%%%%%%% Random generate input weights InputWeight (w_i) and biases BiasofHiddenNeurons (b_i) of hidden neurons
 InputWeight=gpuArray.rand(NumberofHiddenNeurons,NumberofInputNeurons)*2-1;
 BiasofHiddenNeurons=gpuArray.rand(NumberofHiddenNeurons,1);

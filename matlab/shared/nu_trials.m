@@ -1,1 +1,1 @@
-n_trials = 2;
+n_trials = 10;

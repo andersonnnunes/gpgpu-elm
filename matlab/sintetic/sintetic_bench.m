@@ -136,7 +136,7 @@ title(ax, 'Desempenho com precisão simples.');
 ylabel(ax, 'Tempo (segundos)');
 xlabel(ax, 'Tamanho da Dimensão Maior da Matriz');
 drawnow;
-print(fig, 'C:\Workspace\TCC_Text\sptime.png', '-dpng');
+print(fig, 'C:\Workspace\TCC_Text\04-figuras\sptime.png', '-dpng');
 
 %
 % Now, we look at the performance in double precision.
@@ -150,7 +150,7 @@ title(ax, 'Desempenho com precisão dupla.');
 ylabel(ax, 'Tempo (segundos)');
 xlabel(ax, 'Tamanho da Dimensão Maior da Matriz');
 drawnow;
-print(fig, 'C:\Workspace\TCC_Text\dptime.png', '-dpng');
+print(fig, 'C:\Workspace\TCC_Text\04-figuras\dptime.png', '-dpng');
 
 %
 % Finally, we look at the speedup when comparing the GPU to the CPU.
@@ -166,5 +166,5 @@ title(ax, 'Speedup da computação na UPG em comparação à UCP');
 ylabel(ax, 'Speedup');
 xlabel(ax, 'Tamanho da Dimensão Maior da Matriz');
 drawnow;
-print(fig, 'C:\Workspace\TCC_Text\speedup.png', '-dpng');
+print(fig, 'C:\Workspace\TCC_Text\04-figuras\speedup.png', '-dpng');
 end

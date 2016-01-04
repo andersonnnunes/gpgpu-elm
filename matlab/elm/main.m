@@ -2,7 +2,7 @@ close all; clear variables; clc;
 addpath('..\shared\');
 current_algo_name='elm';
 nu_trials; datasets; parameters;
-fr=fopen(f_results, 'a');
+fr=fopen(f_results, 'w');
 if -1==fr
 	error('error opening %s', f_results)
 end

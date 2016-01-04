@@ -17,6 +17,7 @@
 
 honeybee_pollen = 1;
 bank = 2;
+skin = 3;
 
 dataset = 2;
 
@@ -42,6 +43,18 @@ elseif dataset == bank
 	nps = 10297;
 	dir= '../../dataset/bank/'; % nome do diretório que armazena o dataset.
 	f_data =strcat(dir,'bank-additional-full.dat'); % caminho completo para o arquivo principal do dataset.
+	f_part =strcat(dir,'partitions.dat'); % caminho completo para o arquivo auxiliar do dataset.
+	f_results=strcat('../../results/',current_algo_name,'/',name_problem,'.log');
+elseif dataset == skin
+	name_problem = 'skin';
+	ni = 3;
+	nc = 2;
+	np = 245058;
+	npt= 122530; %round(np*0.5);
+	npv= 61265; %round(np*0.25);
+	nps = 61265;
+	dir= '../../dataset/skin/'; % nome do diretório que armazena o dataset.
+	f_data =strcat(dir,'Skin_NonSkin.dat'); % caminho completo para o arquivo principal do dataset.
 	f_part =strcat(dir,'partitions.dat'); % caminho completo para o arquivo auxiliar do dataset.
 	f_results=strcat('../../results/',current_algo_name,'/',name_problem,'.log');
 end
