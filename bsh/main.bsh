@@ -1,5 +1,5 @@
 #!/bin/bash
-. fatiar.bsh
-# time fatiar "C:\Workspace\TCC_Code\dataset\honeybee_pollen\honeybee_pollen.dat" 0
-# time fatiar "C:\Workspace\TCC_Code\dataset\bank\bank-additional-full.dat" 0
+. "C:\Workspace\TCC_Code\bsh\fatiar.bsh"
+time fatiar "C:\Workspace\TCC_Code\dataset\honeybee_pollen\honeybee_pollen.dat" 0
+time fatiar "C:\Workspace\TCC_Code\dataset\bank\bank-additional-full.dat" 0
 time fatiar "C:\Workspace\TCC_Code\dataset\skin\Skin_NonSkin.dat" 0

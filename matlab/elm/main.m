@@ -1,4 +1,4 @@
-close all; clear variables; clc;
+close all; clearvars -except dataset; clc;
 addpath('..\shared\');
 current_algo_name='elm';
 nu_trials; datasets; parameters;
@@ -8,7 +8,6 @@ if -1==fr
 end
 fprintf(fr,['Execution date: ',date,' ',datestr(now, 'HH:MM:SS'),'\n']);
 acc=zeros(nvalS, nvalC, n_trials);
-fprintf('VALIDATION TRIALS\n');
 fprintf(fr,'VALIDATION TRIALS\n');
 validation_time=tic;
 for i=0:n_trials-1
@@ -16,7 +15,7 @@ for i=0:n_trials-1
 	trial_number=num2str(i);
 	for j = 1:nvalS % PARAMETER TUNING for S
 		if valS(j)>=npt*0.4
-			fprintf('Skipping iteration to prevent over-fitting.\n');
+			
 			fprintf(fr,'Skipping iteration to prevent over-fitting.\n');
 			continue
 		end
@@ -28,7 +27,6 @@ for i=0:n_trials-1
 	end
 end
 ValidationTime=toc(validation_time);
-fprintf('time to validate parameters = %.10f\n', ValidationTime);
 fprintf(fr,'time to validate parameters = %.10f\n', ValidationTime);
 avg_acc=mean(acc,3);
 fprintf(fr,'VALIDATION AVERAGE:\n');
@@ -38,10 +36,8 @@ for j=1:nvalS
 	end
 end
 [best_acc imax] = max(max(avg_acc,[],2)); bestS = valS(imax); [best_acc imax] = max(max(avg_acc,[],1)); bestC = valC{imax};
-fprintf('best_acc=%5.1f%% bestS= %g bestC= %s\n', best_acc, bestS, bestC);
 fprintf(fr,'best_acc=%5.1f%% bestS= %g bestC= %s\n', best_acc, bestS, bestC);
-
-fprintf('TEST TRIALS\n'); % Use o melhor parâmetro com a partição de teste.
+ % Use o melhor parâmetro com a partição de teste.
 fprintf(fr,'TEST TRIALS\n');
 acc_test=zeros(1,n_trials); build_time=zeros(1,n_trials); test_time=zeros(1,n_trials);
 for i=0:n_trials-1 % TESTING
@@ -50,12 +46,15 @@ for i=0:n_trials-1 % TESTING
 	build_time(i+1) = TrainingTime;
 	test_time(i+1) = TestingTime;
 end
-fprintf('TESTING AVERAGE:\n');
-fprintf(fr,'TESTING AVERAGE:\n');
-fprintf('avg. acc.= %5.1f%% nHiddenNeurons = %g act. func. = %s\n', mean(acc_test), bestS, bestC);
-fprintf(fr,'avg. acc.= %5.1f%% nHiddenNeurons = %g act. func. = %s\n', mean(acc_test), bestS, bestC);
-fprintf('avg. time to build model = %.10f\n', mean(build_time));
-fprintf(fr,'avg. time to build model = %.10f\n', mean(build_time));
-fprintf('avg. time to test model = %.10f\n', mean(test_time));
-fprintf(fr,'avg. time to test model = %.10f\n', mean(test_time));
+fprintf(fr,'FINAL RESULTS:\n');
+fprintf(fr,'avg. acc. (0-100 scale) | avg. time to build model | avg. time to test model\n');
+nf = java.text.DecimalFormat;
+nf.setMaximumFractionDigits(5)
+fprintf(fr,'%s\t%s\t%s\n', char(nf.format(mean(acc_test))), char(nf.format(mean(build_time))), char(nf.format(mean(test_time))));
+fclose(fr);
+fr=fopen(f_allResults, 'a');
+if -1==fr
+	error('error opening log file')
+end
+fprintf(fr,'%s\t%s\t%s\n', char(nf.format(mean(acc_test))), char(nf.format(mean(build_time))), char(nf.format(mean(test_time))));
 fclose(fr);

@@ -9,11 +9,11 @@ switch current_algo_name
 		nvalS = length(valS);
 		nvalC = length(valC);
 	case {'dkp'}
-		valS = pow2(-15:1:2);
+		valS = pow2(-12:2:2);
 		nvalS = length(valS);
 	case {'svm'}
-		valS = pow2(-15:1:2);
-		valC = pow2(-5:1:14);
+		valS = pow2(-12:2:2);
+		valC = pow2(-4:2:12);
 		nvalS = length(valS);
 		nvalC = length(valC);
 	otherwise

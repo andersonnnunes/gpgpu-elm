@@ -6,7 +6,7 @@ function y = dkp(xt, dt, nc, xv, valS, kernel)
 %  xv: matrix with the validation patterns
 %  valS: kernel spread
 %  kernel: choose between gaussian and linear kernel
-    npt = size(xt, 1); npv = size(xv, 1); s2 = valS^2;
+    npt = size(xt, 1); npv = size(xv, 1); s2 = valS;
     sumt = zeros(1,nc); vote = zeros(1,nc); y = zeros(1,npv);
 	
 		

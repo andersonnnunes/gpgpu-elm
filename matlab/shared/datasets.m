@@ -18,8 +18,9 @@
 honeybee_pollen = 1;
 bank = 2;
 skin = 3;
-
-dataset = 2;
+if exist('dataset', 'var') ~= 1
+	dataset = 1;
+end
 
 if dataset == honeybee_pollen
 	name_problem = 'honeybee_pollen';
@@ -39,7 +40,7 @@ elseif dataset == bank
 	nc = 2;
 	np = 41188;
 	npt= 20594; %round(np*0.5);
-	npv= 10296; %round(np*0.25);
+	npv= 10297; %round(np*0.25);
 	nps = 10297;
 	dir= '../../dataset/bank/'; % nome do diretório que armazena o dataset.
 	f_data =strcat(dir,'bank-additional-full.dat'); % caminho completo para o arquivo principal do dataset.
@@ -49,15 +50,16 @@ elseif dataset == skin
 	name_problem = 'skin';
 	ni = 3;
 	nc = 2;
-	np = 245058;
-	npt= 122530; %round(np*0.5);
-	npv= 61265; %round(np*0.25);
-	nps = 61265;
+	np = 245057;
+	npt= 122529; %round(np*0.5);
+	npv= 61264; %round(np*0.25);
+	nps = 61264;
 	dir= '../../dataset/skin/'; % nome do diretório que armazena o dataset.
 	f_data =strcat(dir,'Skin_NonSkin.dat'); % caminho completo para o arquivo principal do dataset.
 	f_part =strcat(dir,'partitions.dat'); % caminho completo para o arquivo auxiliar do dataset.
 	f_results=strcat('../../results/',current_algo_name,'/',name_problem,'.log');
 end
+f_allResults=strcat('../../results/runAll/runAll.log');
 
 % Example of format for dataset description
 % honeybee_pollen= 6;
