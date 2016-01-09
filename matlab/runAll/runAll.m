@@ -2,6 +2,7 @@ fr=fopen('../../results/runAll/runAll.log', 'w');
 if -1==fr
 	error('error opening log file')
 end
+run('C:\Workspace\TCC_Code\matlab\sintetic\sintetic_bench.m')
 fprintf(fr,['Execution date: ',date,' ',datestr(now, 'HH:MM:SS'),'\n']);
 fclose(fr);
 for dataset=1:3

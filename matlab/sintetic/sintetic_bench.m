@@ -128,7 +128,7 @@ results.gflopsDoubleGPU = gpu;
 % First, we look at the performance in single
 % precision.
 fig = figure;
-ax = axes('parent', fig);
+ax = axes('parent', fig, 'FontSize', 14);
 plot(ax, results.sizeSingle, results.gflopsSingleGPU, '-x', results.sizeSingle, results.gflopsSingleCPU, '-o');
 grid on;
 legend('UPG', 'UCP', 'Location', 'NorthWest');
@@ -141,7 +141,7 @@ print(fig, 'C:\Workspace\TCC_Text\04-figuras\sptime.png', '-dpng');
 %
 % Now, we look at the performance in double precision.
 fig = figure;
-ax = axes('parent', fig);
+ax = axes('parent', fig, 'FontSize', 14);
 plot(ax, results.sizeDouble, results.gflopsDoubleGPU, '-x', ...
 	 results.sizeDouble, results.gflopsDoubleCPU, '-o')
 legend('UPG', 'UCP', 'Location', 'NorthWest');
@@ -157,7 +157,7 @@ print(fig, 'C:\Workspace\TCC_Text\04-figuras\dptime.png', '-dpng');
 speedupDouble = results.gflopsDoubleCPU./results.gflopsDoubleGPU;
 speedupSingle = results.gflopsSingleCPU./results.gflopsSingleGPU;
 fig = figure;
-ax = axes('parent', fig);
+ax = axes('parent', fig, 'FontSize', 14);
 plot(ax, results.sizeSingle, speedupSingle, '-v', ...
 	 results.sizeDouble, speedupDouble, '-*');
 grid on;
