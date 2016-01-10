@@ -157,7 +157,7 @@ print(fig, 'C:\Workspace\TCC_Text\04-figuras\dptime.png', '-dpng');
 speedupDouble = results.gflopsDoubleCPU./results.gflopsDoubleGPU;
 speedupSingle = results.gflopsSingleCPU./results.gflopsSingleGPU;
 fig = figure;
-ax = axes('parent', fig, 'FontSize', 14);
+ax = axes('parent', fig, 'FontSize', 16);
 plot(ax, results.sizeSingle, speedupSingle, '-v', ...
 	 results.sizeDouble, speedupDouble, '-*');
 grid on;

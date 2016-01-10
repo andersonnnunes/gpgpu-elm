@@ -56,6 +56,20 @@ NumberofTrainingData=size(P,2);
 NumberofTestingData=size(TV.P,2);
 NumberofInputNeurons=size(P,1);
 
+avg = mean(P,2); desv = std(P,0,2);  % preprocessing: zero mean, std one
+for j=1:NumberofInputNeurons
+	if desv(j)~=0
+		P(j,:) = (P(j,:) - avg(j))/desv(j);
+		TV.P(j,:) = (TV.P(j,:) - avg(j))/desv(j);
+	end
+end
+for j=1:NumberofTrainingData  % normalization
+	P(:,j) = P(:,j)/norm(P(:,j));
+end
+for j=1:NumberofTestingData
+	TV.P(:,j) = TV.P(:,j)/norm(TV.P(:,j));
+end
+
 if Elm_Type~=REGRESSION
     %%%%%%%%%%%% Preprocessing the data of classification
     sorted_target=sort(cat(2,T,TV.T),2);
