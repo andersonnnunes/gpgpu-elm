@@ -5,3 +5,7 @@
 *.exe
 *.log
 *.bak
+*.warning
+*.out
+*.error
+*.report
