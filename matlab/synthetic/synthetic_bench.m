@@ -48,7 +48,7 @@ sizeDouble = 1024:step:maxSizeDouble;
 
 % Comparing Performance: Time 
 function time = benchFcn(A, b, waitFcn, testCPU)
-	numReps = 3;
+	numReps = 10;
 	time = inf;
 	% We solve the linear system a few times and calculate the time spent
 	for itr = 1:numReps

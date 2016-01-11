@@ -1,4 +1,4 @@
-lineup=[1,1,0,0,0];
+lineup=[1,1,0,1,1];
 firstProblem=1;
 lastProblem=3;
 n_trials=10;
@@ -36,11 +36,10 @@ if lineup(5) == 1
 	run('C:\Workspace\TCC_Code\matlab\synthetic\synthetic_bench.m')
 	fr=fopen('../../results/runAll/runAll.log', 'a'); fprintf(fr,'Synthetic benchmark was done successfully.\n'); fclose(fr);
 else
-	fprintf(fr,'Skipping synthetic benchmark.\n');
+	fr=fopen('../../results/runAll/runAll.log', 'a'); fprintf(fr,'Skipping synthetic benchmark.\n'); fclose(fr);
 end
 fr=fopen('../../results/runAll/runAll.log', 'a');
 if -1==fr
 	error('error opening log file')
 end
-fprintf(fr,['Finalized at: ',date,' ',datestr(now, 'HH:MM:SS'),'\n']);
-fclose(fr);
+fprintf(fr,['Finalized at: ',date,' ',datestr(now, 'HH:MM:SS'),'\n']); fclose(fr);
