@@ -33,19 +33,17 @@ if dataset == honeybee_pollen
 	dir = '../../dataset/honeybee_pollen/'; % nome do diretório que armazena o dataset.
 	f_data = strcat(dir,'honeybee_pollen.dat'); % caminho completo para o arquivo principal do dataset.
 	f_part = strcat(dir,'partitions.dat'); % caminho completo para o arquivo auxiliar do dataset.
-	f_results = strcat('../../results/',current_algo_name,'/',name_problem,'.log');
 elseif dataset == bank
 	name_problem = 'bank';
 	ni = 53;
 	nc = 2;
 	np = 41188;
-	npt= 20594; %round(np*0.5);
-	npv= 10297; %round(np*0.25);
+	npt = 20594; %round(np*0.5);
+	npv = 10297; %round(np*0.25);
 	nps = 10297;
-	dir= '../../dataset/bank/'; % nome do diretório que armazena o dataset.
-	f_data =strcat(dir,'bank-additional-full.dat'); % caminho completo para o arquivo principal do dataset.
-	f_part =strcat(dir,'partitions.dat'); % caminho completo para o arquivo auxiliar do dataset.
-	f_results=strcat('../../results/',current_algo_name,'/',name_problem,'.log');
+	dir = '../../dataset/bank/'; % nome do diretório que armazena o dataset.
+	f_data = strcat(dir,'bank-additional-full.dat'); % caminho completo para o arquivo principal do dataset.
+	f_part = strcat(dir,'partitions.dat'); % caminho completo para o arquivo auxiliar do dataset.
 elseif dataset == skin
 	name_problem = 'skin';
 	ni = 3;
@@ -57,8 +55,10 @@ elseif dataset == skin
 	dir= '../../dataset/skin/'; % nome do diretório que armazena o dataset.
 	f_data =strcat(dir,'Skin_NonSkin.dat'); % caminho completo para o arquivo principal do dataset.
 	f_part =strcat(dir,'partitions.dat'); % caminho completo para o arquivo auxiliar do dataset.
-	f_results=strcat('../../results/',current_algo_name,'/',name_problem,'.log');
 end
+f_results=strcat('../../results/',current_algo_name,'/',name_problem,'.log');
+f_speedTrainResults=strcat('../../results/speedup/',current_algo_name,'/',name_problem,'-train.log');
+f_speedTestResults=strcat('../../results/speedup/',current_algo_name,'/',name_problem,'-test.log');
 f_allResults=strcat('../../results/runAll/runAll.log');
 
 % Example of format for dataset description

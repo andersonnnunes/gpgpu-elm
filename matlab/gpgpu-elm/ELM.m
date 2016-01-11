@@ -112,6 +112,7 @@ if Elm_Type~=REGRESSION
 end                                                 %   end if of Elm_Type
 
 %%%%%%%%%%% Move data to GPU
+tic;
 gd = gpuDevice;
 T=gpuArray(T);
 P=gpuArray(P);
@@ -119,7 +120,6 @@ TV.T=gpuArray(TV.T);
 TV.P=gpuArray(TV.P);
 
 %%%%%%%%%%% Calculate weights & biases
-tic;
 %%%%%%%%%%% Random generate input weights InputWeight (w_i) and biases BiasofHiddenNeurons (b_i) of hidden neurons
 InputWeight=gpuArray.rand(NumberofHiddenNeurons,NumberofInputNeurons)*2-1;
 BiasofHiddenNeurons=gpuArray.rand(NumberofHiddenNeurons,1);
@@ -153,16 +153,15 @@ end
 clear tempH;
 %%%%%%%%%%% Calculate output weights OutputWeight (beta_i)
 OutputWeight=pinv(pagefun(@ctranspose, H)) * pagefun(@ctranspose, T);
-wait(gd);
-TrainingTime=toc;
 
 %%%%%%%%%%% Calculate the training accuracy
-Y=pagefun(@ctranspose, (pagefun(@ctranspose, H) * OutputWeight));                             %   Y: the actual output of the training data
+Y=pagefun(@ctranspose, (pagefun(@ctranspose, H) * OutputWeight));     %   Y: the actual output of the training data
 if Elm_Type == REGRESSION
 	TrainingAccuracy=sqrt(mse(T - Y));              %   Calculate training accuracy (RMSE) for regression case
 end
 clear H;
-
+wait(gd);
+TrainingTime=toc;
 %%%%%%%%%%% Calculate the output of testing input
 tic;
 tempH_test=InputWeight*TV.P;
@@ -192,13 +191,12 @@ switch lower(ActivationFunction)
 end
 TY=pagefun(@ctranspose, (pagefun(@ctranspose, H_test) * OutputWeight));                       %   TY: the actual output of the testing data
 wait(gd);
-TestingTime=toc;
 %%%%%%%%%%% Gather data from GPU
 T=gather(T);
 Y=gather(Y);
 TV.T=gather(TV.T);
 TY=gather(TY);
-
+TestingTime=toc;
 if Elm_Type == REGRESSION
 	TestingAccuracy=sqrt(mse(TV.T - TY));           %   Calculate testing accuracy (RMSE) for regression case
 end

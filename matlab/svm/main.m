@@ -1,4 +1,4 @@
-close all; clearvars -except dataset; clc;
+close all; clearvars -except dataset n_trials lineup firstProblem lastProblem; clc;
 addpath('..\shared\');
 current_algo_name='svm';
 nu_trials; datasets; parameters; openLogFile;

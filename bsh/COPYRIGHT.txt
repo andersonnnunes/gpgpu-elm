@@ -1,4 +1,4 @@
-%   * main.m
+%   * runFatiar.m
 %   * fatiar.m
 %   * Copyright (C) Anderson Nascimento Nunes 2015 <contato@andersonnnunes.org>
 %   *
@@ -15,3 +15,14 @@
 %   *     You should have received a copy of the GNU Lesser General Public License
 %   *     along with this program.  If not, see <http://www.gnu.org/licenses/lgpl.html>.
 %   *
+
+%   * SpeedUpTest.bsh
+%   * SpeedUpTest.r
+%   *     Copyright UVSQ (2010)
+%   *     This software b elongs to the univers ity of Versailles Saint-Quentin en Yvelines (France ). This program
+%   *     is free software; you can redistribute it and/or mo dify it under the terms of the GNU Ge ne ral Public
+%   *     License as published by the Free Software Foundation; either version 3 of the License, or (at your option)
+%   *     any later version
+%   *     This program is distributed in the hop e that it will b e useful, but WITHOUT ANY WARRANTY;
+%   *     without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTI CULAR PURPOSE.
+%   *     See the GNU General Public License for more details.

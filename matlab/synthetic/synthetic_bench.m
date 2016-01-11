@@ -4,7 +4,7 @@ Benchmarking pinv(A') * b' on the GPU
  Copyright 2015 Anderson Nascimento Nunes 
 %}
 
-function results = sintetic_bench()
+function results = synthetic_bench()
 set(0,'DefaultFigureVisible','off');
 % The Benchmarking Function
 % We want to benchmark pinv(A') * b', and not the cost of
@@ -128,43 +128,47 @@ results.gflopsDoubleGPU = gpu;
 % First, we look at the performance in single
 % precision.
 fig = figure;
-ax = axes('parent', fig, 'FontSize', 14);
+ax = axes('parent', fig);
 plot(ax, results.sizeSingle, results.gflopsSingleGPU, '-x', results.sizeSingle, results.gflopsSingleCPU, '-o');
+newFontSize = 13;
+ax.FontSize = newFontSize;
 grid on;
 legend('UPG', 'UCP', 'Location', 'NorthWest');
-title(ax, 'Desempenho com precisão simples.');
+title(ax, 'Com precisão simples.');
 ylabel(ax, 'Tempo (segundos)');
 xlabel(ax, 'Tamanho da Dimensão Maior da Matriz');
 drawnow;
-print(fig, 'C:\Workspace\TCC_Text\04-figuras\sptime.png', '-dpng');
+print(fig, 'C:\Workspace\TCC_Text\04-figuras\sptime.eps', '-depsc');
 
 %
 % Now, we look at the performance in double precision.
 fig = figure;
-ax = axes('parent', fig, 'FontSize', 14);
+ax = axes('parent', fig);
 plot(ax, results.sizeDouble, results.gflopsDoubleGPU, '-x', ...
 	 results.sizeDouble, results.gflopsDoubleCPU, '-o')
+ax.FontSize = newFontSize;
 legend('UPG', 'UCP', 'Location', 'NorthWest');
 grid on;
-title(ax, 'Desempenho com precisão dupla.');
+title(ax, 'Com precisão dupla.');
 ylabel(ax, 'Tempo (segundos)');
 xlabel(ax, 'Tamanho da Dimensão Maior da Matriz');
 drawnow;
-print(fig, 'C:\Workspace\TCC_Text\04-figuras\dptime.png', '-dpng');
+print(fig, 'C:\Workspace\TCC_Text\04-figuras\dptime.eps', '-depsc');
 
 %
 % Finally, we look at the speedup when comparing the GPU to the CPU.
 speedupDouble = results.gflopsDoubleCPU./results.gflopsDoubleGPU;
 speedupSingle = results.gflopsSingleCPU./results.gflopsSingleGPU;
 fig = figure;
-ax = axes('parent', fig, 'FontSize', 16);
+ax = axes('parent', fig);
 plot(ax, results.sizeSingle, speedupSingle, '-v', ...
 	 results.sizeDouble, speedupDouble, '-*');
+ax.FontSize = newFontSize;
 grid on;
 legend('Precisão simples.', 'Precisão dupla.', 'Location', 'SouthEast');
-title(ax, 'Speedup da computação na UPG em comparação à UCP');
-ylabel(ax, 'Speedup');
+% title(ax, 'Speedup da computação na UPG em comparação à UCP');
+ylabel(ax, 'Aceleração');
 xlabel(ax, 'Tamanho da Dimensão Maior da Matriz');
 drawnow;
-print(fig, 'C:\Workspace\TCC_Text\04-figuras\speedup.png', '-dpng');
+print(fig, 'C:\Workspace\TCC_Text\04-figuras\speedup.eps', '-depsc');
 end

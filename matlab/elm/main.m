@@ -1,4 +1,4 @@
-close all; clearvars -except dataset; clc;
+close all; clearvars -except dataset n_trials lineup firstProblem lastProblem; clc;
 addpath('..\shared\');
 current_algo_name='elm';
 nu_trials; datasets; parameters; openLogFile;
@@ -40,4 +40,4 @@ for i=0:n_trials-1 % TESTING. Use o melhor parâmetro com a partição de teste.
 	build_time(i+1) = TrainingTime;
 	test_time(i+1) = TestingTime;
 end
-closeLogFile;
+printTime; closeLogFile;

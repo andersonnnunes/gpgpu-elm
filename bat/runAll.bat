@@ -1,1 +1,1 @@
-C:\Windows\System32\cmd.exe /C start /HIGH /MIN /affinity 80 matlab.exe -singleCompThread -nodesktop -nosplash -r "run '"C:\Workspace\TCC_Code\matlab\runAll\runAll.m"'; exit;"
+C:\Windows\System32\cmd.exe /C start "" /HIGH /affinity 80 "C:\Program Files\MATLAB\R2015a\bin\win64\MATLAB.exe" -singleCompThread -noawt -minimize -nodesktop -nosplash -r "run '"C:\Workspace\TCC_Code\matlab\runAll\runAll.m"'; exit;"
