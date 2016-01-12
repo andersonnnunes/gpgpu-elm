@@ -1,4 +1,4 @@
-lineup=[1,1,0,1,1];
+lineup=[0,0,1,0,0];
 firstProblem=1;
 lastProblem=3;
 n_trials=10;

@@ -6,6 +6,8 @@ Benchmarking pinv(A') * b' on the GPU
 
 function results = synthetic_bench()
 set(0,'DefaultFigureVisible','off');
+set(0,'DefaultAxesFontName', 'Times New Roman');
+newFontSize = 12;
 % The Benchmarking Function
 % We want to benchmark pinv(A') * b', and not the cost of
 % transferring data between the CPU and GPU, the time it takes to create a
@@ -44,7 +46,6 @@ if maxSizeDouble/step >= 10
 end
 sizeSingle = 1024:step:maxSizeSingle;
 sizeDouble = 1024:step:maxSizeDouble;
-
 
 % Comparing Performance: Time 
 function time = benchFcn(A, b, waitFcn, testCPU)
@@ -130,7 +131,6 @@ results.gflopsDoubleGPU = gpu;
 fig = figure;
 ax = axes('parent', fig);
 plot(ax, results.sizeSingle, results.gflopsSingleGPU, '-x', results.sizeSingle, results.gflopsSingleCPU, '-o');
-newFontSize = 13;
 ax.FontSize = newFontSize;
 grid on;
 legend('UPG', 'UCP', 'Location', 'NorthWest');
@@ -154,6 +154,22 @@ ylabel(ax, 'Tempo (segundos)');
 xlabel(ax, 'Tamanho da Dimensão Maior da Matriz');
 drawnow;
 print(fig, 'C:\Workspace\TCC_Text\04-figuras\dptime.eps', '-depsc');
+
+%
+% Both plots in one.
+fig = figure;
+ax = axes('parent', fig);
+plot(ax, results.sizeDouble, results.gflopsDoubleGPU, '-x', ...
+	results.sizeDouble, results.gflopsDoubleCPU, '-o', ...
+	results.sizeSingle, results.gflopsSingleGPU, '-x', ...
+	results.sizeSingle, results.gflopsSingleCPU, '-o')
+ax.FontSize = newFontSize;
+legend('UPG - Precisão Dupla', 'UCP  - Precisão Dupla', 'UPG - Precisão Simples', 'UCP  - Precisão Simples', 'Location', 'NorthWest');
+grid on;
+ylabel(ax, 'Tempo (segundos)');
+xlabel(ax, 'Tamanho da Dimensão Maior da Matriz');
+drawnow;
+print(fig, 'C:\Workspace\TCC_Text\04-figuras\spdptime.eps', '-depsc');
 
 %
 % Finally, we look at the speedup when comparing the GPU to the CPU.
