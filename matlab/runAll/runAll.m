@@ -1,6 +1,6 @@
-lineup=[0,0,1,0,0];
-firstProblem=1;
-lastProblem=3;
+lineup=[1,1,1,1,1];
+firstProblem=4;
+lastProblem=4;
 n_trials=10;
 fr=fopen('../../results/runAll/runAll.log', 'w');
 if -1==fr

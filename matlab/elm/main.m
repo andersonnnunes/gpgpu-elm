@@ -8,7 +8,6 @@ for i=0:n_trials-1
 	fprintf(fr, 'trial %i --------------\n', i);
 	for j = 1:nvalS % PARAMETER TUNING for S
 		if valS(j)>=npt*0.4
-			
 			fprintf(fr,'Skipping iteration to prevent over-fitting.\n');
 			continue
 		end

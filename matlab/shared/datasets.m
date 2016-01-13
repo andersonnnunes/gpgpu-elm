@@ -18,8 +18,9 @@
 honeybee_pollen = 1;
 bank = 2;
 skin = 3;
+gas_sensor = 4;
 if exist('dataset', 'var') ~= 1
-	dataset = 1;
+	dataset = 4;
 end
 
 if dataset == honeybee_pollen
@@ -30,52 +31,35 @@ if dataset == honeybee_pollen
 	npt = 1300;
 	npv = 650;
 	nps = 650;
-	dir = '../../dataset/honeybee_pollen/'; % nome do diretório que armazena o dataset.
-	f_data = strcat(dir,'honeybee_pollen.dat'); % caminho completo para o arquivo principal do dataset.
-	f_part = strcat(dir,'partitions.dat'); % caminho completo para o arquivo auxiliar do dataset.
 elseif dataset == bank
 	name_problem = 'bank';
 	ni = 53;
 	nc = 2;
 	np = 41188;
-	npt = 20594; %round(np*0.5);
-	npv = 10297; %round(np*0.25);
+	npt = 20594;
+	npv = 10297;
 	nps = 10297;
-	dir = '../../dataset/bank/'; % nome do diretório que armazena o dataset.
-	f_data = strcat(dir,'bank-additional-full.dat'); % caminho completo para o arquivo principal do dataset.
-	f_part = strcat(dir,'partitions.dat'); % caminho completo para o arquivo auxiliar do dataset.
 elseif dataset == skin
 	name_problem = 'skin';
 	ni = 3;
 	nc = 2;
 	np = 245057;
-	npt= 122529; %round(np*0.5);
-	npv= 61264; %round(np*0.25);
+	npt= 122529;
+	npv= 61264;
 	nps = 61264;
-	dir= '../../dataset/skin/'; % nome do diretório que armazena o dataset.
-	f_data =strcat(dir,'Skin_NonSkin.dat'); % caminho completo para o arquivo principal do dataset.
-	f_part =strcat(dir,'partitions.dat'); % caminho completo para o arquivo auxiliar do dataset.
+elseif dataset == gas_sensor
+	name_problem = 'gas_sensor';
+	ni = 128;
+	nc = 6;
+	np = 13910;
+	npt= 6954;
+	npv= 3477;
+	nps = 3476;
 end
-f_results=strcat('../../results/',current_algo_name,'/',name_problem,'.log');
-f_speedTrainResults=strcat('../../results/speedup/',current_algo_name,'/',name_problem,'-train.log');
-f_speedTestResults=strcat('../../results/speedup/',current_algo_name,'/',name_problem,'-test.log');
-f_allResults=strcat('../../results/runAll/runAll.log');
-
-% Example of format for dataset description
-% honeybee_pollen= 6;
-
-% dataset=honeybee_pollen;
-
-% if dataset == honeybee_pollen
-	% name_problem = 'honeybee_pollen';  % nome do problema, pode ser qualquer nome, usado apenas para ler/escrever arquivos.
-	% ni =70; % número de colunas.
-	% nc =5; % número de classes.
-	% np =2600; % número de instâncias.
-	% npt= 1300; % número de instâncias para treinamento.
-	% npv= 650; % número de instâncias para validação.
-	% nps =650; % número de instâncias para testes.
-	% dir= 'datasets/honeybee_pollen/'; % nome do diretório que armazena o dataset.
-	% f_data =strcat(dir,'honeybee_pollen.dat'); % caminho completo para o arquivo principal do dataset.
-	% f_part =strcat(dir,'partitions.dat'); % caminho completo para o arquivo auxiliar do dataset.
-	% f_results ='results_honeybee_pollen.dat'; % caminho completo para o arquivo que armazenará os resultados.
-% end
+dir = strcat('../../dataset/',name_problem,'/');
+f_data = strcat(dir,name_problem,'.dat');
+f_part = strcat(dir,'partitions.dat');
+f_results = strcat('../../results/',current_algo_name,'/',name_problem,'.log');
+f_speedTrainResults = strcat('../../results/speedup/',current_algo_name,'/',name_problem,'-train.log');
+f_speedTestResults = strcat('../../results/speedup/',current_algo_name,'/',name_problem,'-test.log');
+f_allResults = strcat('../../results/runAll/runAll.log');
