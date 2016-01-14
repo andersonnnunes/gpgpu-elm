@@ -52,9 +52,9 @@ elseif dataset == gas_sensor
 	ni = 128;
 	nc = 6;
 	np = 13910;
-	npt= 6954;
-	npv= 3477;
-	nps = 3476;
+	npt= 6955;
+	npv= 3478;
+	nps = 3477;
 end
 dir = strcat('../../dataset/',name_problem,'/');
 f_data = strcat(dir,name_problem,'.dat');
