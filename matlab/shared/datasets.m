@@ -20,7 +20,7 @@ bank = 2;
 skin = 3;
 gas_sensor = 4;
 if exist('dataset', 'var') ~= 1
-	dataset = 4;
+	dataset = 1;
 end
 
 if dataset == honeybee_pollen

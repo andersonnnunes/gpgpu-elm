@@ -4,7 +4,14 @@ Benchmarking pinv(A') * b' on the GPU
  Copyright 2015 Anderson Nascimento Nunes 
 %}
 
-function results = synthetic_bench()
+function results = synthetic_bench(varargin)
+numvarargs = length(varargin);
+if numvarargs > 1
+    error('Use at most 1 optional input.');
+end
+optargs = {10};
+optargs(1:numvarargs) = varargin;
+[n_trials] = optargs{:};
 set(0,'DefaultFigureVisible','off');
 set(0,'DefaultAxesFontName', 'Times New Roman');
 newFontSize = 12;
@@ -49,7 +56,7 @@ sizeDouble = 1024:step:maxSizeDouble;
 
 % Comparing Performance: Time 
 function time = benchFcn(A, b, waitFcn, testCPU)
-	numReps = 10;
+	numReps = n_trials;
 	time = inf;
 	% We solve the linear system a few times and calculate the time spent
 	for itr = 1:numReps
@@ -172,6 +179,71 @@ drawnow;
 print(fig, 'C:\Workspace\TCC_Text\04-figuras\spdptime.eps', '-depsc');
 
 %
+% Bar plot. 1/4.
+fig = figure;ax = axes('parent', fig);
+bar(results.sizeSingle(1:4),cat(2,results.gflopsSingleCPU(1:4)',results.gflopsSingleGPU(1:4)',results.gflopsDoubleCPU(1:4)',results.gflopsDoubleGPU(1:4)'));
+ax.FontSize = newFontSize;
+legend('UPG - Precisão Dupla', 'UCP  - Precisão Dupla', 'UPG - Precisão Simples', 'UCP  - Precisão Simples', 'Location', 'NorthWest');
+grid on;
+ylabel(ax, 'Tempo (segundos)');
+xlabel(ax, 'Tamanho da Dimensão Maior da Matriz');
+drawnow;
+print(fig, 'C:\Workspace\TCC_Text\04-figuras\spdptime-bar-1-to-4.eps', '-depsc');
+
+
+%
+% Bar plot. 2/4.
+fig = figure;
+ax = axes('parent', fig);
+bar(results.sizeSingle(5:8),cat(2,results.gflopsSingleCPU(5:8)',results.gflopsSingleGPU(5:8)',results.gflopsDoubleCPU(5:8)',results.gflopsDoubleGPU(5:8)'));
+ax.FontSize = newFontSize;
+legend('UPG - Precisão Dupla', 'UCP  - Precisão Dupla', 'UPG - Precisão Simples', 'UCP  - Precisão Simples', 'Location', 'NorthWest');
+grid on;
+ylabel(ax, 'Tempo (segundos)');
+xlabel(ax, 'Tamanho da Dimensão Maior da Matriz');
+drawnow;
+print(fig, 'C:\Workspace\TCC_Text\04-figuras\spdptime-bar-5-to-8.eps', '-depsc');
+
+%
+% Bar plot. 3/4.
+fig = figure;
+ax = axes('parent', fig);
+bar(results.sizeSingle(9:12),cat(2,results.gflopsSingleCPU(9:12)',results.gflopsSingleGPU(9:12)'));
+ax.FontSize = newFontSize;
+legend('UPG - Precisão Simples', 'UCP  - Precisão Simples', 'Location', 'NorthWest');
+grid on;
+ylabel(ax, 'Tempo (segundos)');
+xlabel(ax, 'Tamanho da Dimensão Maior da Matriz');
+drawnow;
+print(fig, 'C:\Workspace\TCC_Text\04-figuras\spdptime-bar-9-to-12.eps', '-depsc');
+
+%
+% Bar plot. 4/4.
+fig = figure;
+ax = axes('parent', fig);
+bar(results.sizeSingle(13:16),[results.gflopsSingleCPU(13:16)',results.gflopsSingleGPU(13:16)']);
+ax.FontSize = newFontSize;
+legend('UPG - Precisão Simples', 'UCP  - Precisão Simples', 'Location', 'NorthWest');
+grid on;
+ylabel(ax, 'Tempo (segundos)');
+xlabel(ax, 'Tamanho da Dimensão Maior da Matriz');
+drawnow;
+print(fig, 'C:\Workspace\TCC_Text\04-figuras\spdptime-bar-13-to-16.eps', '-depsc');
+
+%
+% Bar plot. All in one.
+fig = figure;
+ax = axes('parent', fig);
+bar(results.sizeSingle(1:16),cat(2,results.gflopsSingleCPU(1:16)',results.gflopsSingleGPU(1:16)',cat(1,results.gflopsDoubleCPU(1:8)',zeros(8,1)),cat(1,results.gflopsDoubleGPU(1:8)',zeros(8,1))), 'grouped');
+ax.FontSize = newFontSize;
+legend('UCP - Precisão Simples', 'UPG - Precisão Simples', 'UCP - Precisão Dupla', 'UPG - Precisão Dupla', 'Location', 'NorthWest');
+grid on;
+ylabel(ax, 'Tempo (segundos)');
+xlabel(ax, 'Tamanho da Dimensão Maior da Matriz');
+drawnow;
+print(fig, 'C:\Workspace\TCC_Text\04-figuras\spdptime-bar-all.eps', '-depsc');
+
+%
 % Finally, we look at the speedup when comparing the GPU to the CPU.
 speedupDouble = results.gflopsDoubleCPU./results.gflopsDoubleGPU;
 speedupSingle = results.gflopsSingleCPU./results.gflopsSingleGPU;
@@ -187,4 +259,20 @@ ylabel(ax, 'Aceleração');
 xlabel(ax, 'Tamanho da Dimensão Maior da Matriz');
 drawnow;
 print(fig, 'C:\Workspace\TCC_Text\04-figuras\speedup.eps', '-depsc');
+
+%
+% Bar plot. Speedup.
+speedupDouble = results.gflopsDoubleCPU./results.gflopsDoubleGPU;
+speedupSingle = results.gflopsSingleCPU./results.gflopsSingleGPU;
+fig = figure;
+ax = axes('parent', fig);
+bar(results.sizeSingle(1:16),cat(2,speedupSingle(1:16)',cat(1,speedupDouble(1:8)',zeros(8,1))), 'grouped');
+ax.FontSize = newFontSize;
+grid on;
+legend('Precisão simples.', 'Precisão dupla.', 'Location', 'NorthWest');
+% title(ax, 'Speedup da computação na UPG em comparação à UCP');
+ylabel(ax, 'Aceleração');
+xlabel(ax, 'Tamanho da Dimensão Maior da Matriz');
+drawnow;
+print(fig, 'C:\Workspace\TCC_Text\04-figuras\speedup-bar.eps', '-depsc');
 end

@@ -29,9 +29,9 @@ end
 [best_acc imax] = max(max(avg_acc,[],2)); bestS = valS(imax); [best_acc imax] = max(max(avg_acc,[],1)); bestC = valC(imax);
 fprintf(fr,'best_acc=%5.1f%% bestS= %g bestC= %g\n', best_acc, bestS, bestC);
 fprintf(fr,'TEST TRIALS\n');
-acc_test=zeros(1,n_trials); build_time=zeros(1,n_trials); test_time=zeros(1,n_trials);
-for i=0:n_trials-1 % TESTING % Use os melhores parâmetros com a partição de teste.
-	[label_vector, instance_matrix] = libsvmread(strcat('../../dataset/',name_problem,'/test/',num2str(i),'-svm.dat'));
+n_testTrials = n_trials*4; acc_test=zeros(1,n_testTrials); build_time=zeros(1,n_testTrials); test_time=zeros(1,n_testTrials);
+for i=0:n_testTrials-1 % TESTING % Use os melhores parâmetros com a partição de teste.
+	[label_vector, instance_matrix] = libsvmread(strcat('../../dataset/',name_problem,'/test/',num2str(mod(i,10)),'-svm.dat'));
 	start_time_build = tic;
 	model = svmtrain(label_vector, instance_matrix, ['-q -c ', num2str(bestC),'-g ', num2str(bestS)]);
 	build_time(i+1) = toc(start_time_build);

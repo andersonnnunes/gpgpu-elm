@@ -1,7 +1,7 @@
 switch current_algo_name
 	case {'elm','gpgpu-elm'}
 		if dataset == skin
-			valS = [10:30:150];
+			valS = [10:30:90 140:50:240];
 		else
 			valS = [10:30:100 150:125:650 800:200:1200];
 		end

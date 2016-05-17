@@ -1,0 +1,6 @@
+#!/bin/bash
+. "C:\Workspace\TCC_Code\bsh\fatiar.bsh"
+time fatiar "C:\Workspace\TCC_Code\dataset\honeybee_pollen\honeybee_pollen.dat" 0
+time fatiar "C:\Workspace\TCC_Code\dataset\bank\bank.dat" 0
+time fatiar "C:\Workspace\TCC_Code\dataset\skin\skin_nonskin.dat" 0
+time fatiar "C:\Workspace\TCC_Code\dataset\gas_sensor\gas_sensor.dat" 0

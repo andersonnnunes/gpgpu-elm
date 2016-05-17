@@ -1,0 +1,2 @@
+./SpeedUpTest.bsh ./configForTestTimeWith95Confidence.csv
+./SpeedUpTest.bsh ./configForTrainTimeWith95Confidence.csv

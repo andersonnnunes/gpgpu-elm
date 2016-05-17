@@ -1,1 +1,0 @@
-The configuration files for .\SpeedUpTest.bsh assume that the script was launched from its folder.

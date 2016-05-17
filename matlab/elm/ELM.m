@@ -145,7 +145,6 @@ switch lower(ActivationFunction)
         %%%%%%%% More activation functions can be added here                
 end
 clear tempH;                                        %   Release the temparary array for calculation of hidden neuron output matrix H
-
 %%%%%%%%%%% Calculate output weights OutputWeight (beta_i)
 OutputWeight=pinv(H') * T';
 TrainingTime=toc;

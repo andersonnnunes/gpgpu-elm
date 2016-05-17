@@ -24,16 +24,16 @@ end
 [best_acc, imax] = max(avg_acc); bestS = valS(imax);
 fprintf(fr,'best_acc=%5.1f%% bestS= %g\n', best_acc, bestS);
 fprintf(fr,'TEST TRIALS\n');
-acc_test=zeros(1,n_trials); build_time=zeros(1,n_trials); test_time=zeros(1,n_trials); cm = zeros(nc);  % cm=confusion matrix
-for i=1:n_trials % Use o melhor parâmetro com a partição de teste.
+n_testTrials = n_trials*4; acc_test=zeros(1,n_testTrials); build_time=zeros(1,n_testTrials); test_time=zeros(1,n_testTrials); % cm = zeros(nc);  % cm=confusion matrix
+for i=1:n_testTrials % Use o melhor parâmetro com a partição de teste.
 	start_time_build = tic;
-	load(sprintf('trial_%i.mat', i),'-mat')
+	load(sprintf('trial_%i.mat', mod(i,10) + sign(idivide(i,int32(10)))),'-mat')
 	build_time(i+1) = toc(start_time_build);
 	start_time_test = tic;
-	y = dkp(xt, dt, nc, xs, bestS, 1);
+	y = dkp(xt, dt, nc, xs, bestS, 2);
 	test_time(i+1) = toc(start_time_test);
 	for j=1:nps
-		k= ds(j); l= y(j); cm(k,l)= cm(k,l) + 1;
+		k= ds(j); l= y(j); % cm(k,l)= cm(k,l) + 1;
 	end
 	acc_test(i) = 100*sum(y == ds)/nps;
 	clear('xt','dt','iv','xv','dv','is','xs','ds')

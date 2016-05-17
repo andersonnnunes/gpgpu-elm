@@ -1,0 +1,5 @@
+Name,Sample1,Sample2,ConfLevel,Coef
+"Honeybee","../../results/speedup/elm/honeybee_pollen-test.log","../../results/speedup/gpgpu-elm/honeybee_pollen-test.log",0.95,1
+"Bank","../../results/speedup/elm/bank-test.log","../../results/speedup/gpgpu-elm/bank-test.log",0.95,1
+"Skin","../../results/speedup/elm/skin-test.log","../../results/speedup/gpgpu-elm/skin-test.log",0.95,1
+"Gas Sensor","../../results/speedup/elm/gas_sensor-test.log","../../results/speedup/gpgpu-elm/gas_sensor-test.log",0.95,1

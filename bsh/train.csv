@@ -1,4 +1,0 @@
-Name,Sample1,Sample2,ConfLevel,Coef
-"Honeybee Train","../results/speedup/elm/honeybee_pollen-train.log","../results/speedup/gpgpu-elm/honeybee_pollen-train.log",0.95,
-"Bank Train","../results/speedup/elm/bank-train.log","../results/speedup/gpgpu-elm/bank-train.log",0.95,
-"Skin Train","../results/speedup/elm/skin-train.log","../results/speedup/gpgpu-elm/skin-train.log",0.95,

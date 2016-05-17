@@ -31,9 +31,9 @@ end
 fprintf(fr,'best_acc=%5.1f%% bestS= %g bestC= %s\n', best_acc, bestS, bestC);
 
 fprintf(fr,'TEST TRIALS\n');
-acc_test=zeros(1,n_trials); build_time=zeros(1,n_trials); test_time=zeros(1,n_trials);
-for i=0:n_trials-1 % TESTING. Use o melhor parâmetro com a partição de teste.
-	[TrainingTime, TestingTime, TrainingAccuracy, TestingAccuracy] = ELM(strcat('../../dataset/',name_problem,'/train/',num2str(i),'-elm.dat'), strcat('../../dataset/',name_problem,'/test/',num2str(i),'-elm.dat'), 1, bestS, bestC);
+n_testTrials = n_trials*4; acc_test=zeros(1,n_testTrials); build_time=zeros(1,n_testTrials); test_time=zeros(1,n_testTrials);
+for i=0:n_testTrials-1 % TESTING. Use o melhor parâmetro com a partição de teste.
+	[TrainingTime, TestingTime, TrainingAccuracy, TestingAccuracy] = ELM(strcat('../../dataset/',name_problem,'/train/',num2str(mod(i,10)),'-elm.dat'), strcat('../../dataset/',name_problem,'/test/',num2str(mod(i,10)),'-elm.dat'), 1, bestS, bestC);
 	acc_test(i+1) = TestingAccuracy.*100;
 	build_time(i+1) = TrainingTime;
 	test_time(i+1) = TestingTime;
