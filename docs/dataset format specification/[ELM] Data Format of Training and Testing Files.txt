@@ -1,7 +1,7 @@
 Data Format of Training and Testing Files
 
 Important Notes: 
-1)      It is suggested that all the input attributes (except expected targets) be normalized into the range [-1, 1].
-2)      The downloaded elm works for single-output function regression and single/multi-label classification cases. Users may easily customize and make it suitable to multi-output function regression cases.
+1) It is suggested that all the input attributes (except expected targets) be normalized into the range [-1, 1].
+2) The downloaded elm works for single-output function regression and single/multi-label classification cases. Users may easily customize and make it suitable to multi-output function regression cases.
 
 Data Format: Training and testing files are text files, each row consisting of information of one instance. First column are the expected output (target) for regression and classification applications, the rest columns consist of different attributes information of each instance. For example, the following shows a 7-class application dataset which have 9 input attributes. Since the ELM can automatically detect and propose multi-class labels, users can simply use one column to indicate the multi-class labels in their training and testing data files.
