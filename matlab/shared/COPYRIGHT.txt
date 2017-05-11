@@ -1,6 +1,6 @@
 %   * datasets.m
 %   * Copyright (C) Manuel Fernandez Delgado 2013 <manuel.fernandez.delgado@usc.es>
-%   * Copyright (C) Anderson Nascimento Nunes 2015 <contato@andersonnnunes.org>
+%   * Copyright (C) Anderson Nascimento Nunes 2015 <rnd.t.first.contact.1y8u8zz@andersonnnunes.org@andersonnnunes.org>
 %   *
 %   *     This program is free software: you can redistribute it and/or modify
 %   *     it under the terms of the GNU Lesser General Public License as published by
@@ -16,7 +16,7 @@
 %   *     along with this program.  If not, see <http://www.gnu.org/licenses/lgpl.html>.
 %   *
 %   * *.*
-%   * Copyright (C) Anderson Nascimento Nunes 2015 <contato@andersonnnunes.org>
+%   * Copyright (C) Anderson Nascimento Nunes 2015 <rnd.t.first.contact.1y8u8zz@andersonnnunes.org@andersonnnunes.org>
 %   *
 %   *     This program is free software: you can redistribute it and/or modify
 %   *     it under the terms of the GNU Lesser General Public License as published by

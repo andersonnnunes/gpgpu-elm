@@ -2,7 +2,7 @@
 %   * SpeedUpTest.r
 %   *     Copyright UVSQ (2010)
 %   *     This software belongs to the university of Versailles Saint-Quentin en Yvelines (France ). This program
-%   *     is free software; you can redistribute it and/or mo dify it under the terms of the GNU Ge ne ral Public
+%   *     is free software; you can redistribute it and/or mo dify it under the terms of the GNU General Public
 %   *     License as published by the Free Software Foundation; either version 3 of the License, or (at your option)
 %   *     any later version.
 %   *     This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
